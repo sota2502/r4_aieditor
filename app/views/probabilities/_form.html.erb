@@ -1,0 +1,35 @@
+<%= form_with(model: probability, local: true) do |form| %>
+  <% if probability.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(probability.errors.count, "error") %> prohibited this probability from being saved:</h2>
+
+      <ul>
+        <% probability.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>デフォルト値</th>
+        <th>難易度補正量</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><%= form.text_field :name %></td>
+        <td><%= form.text_field :default_value %></td>
+        <td><%= form.text_field :correction_value %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= form.submit submit_label %>
+  </div>
+<% end %>
