@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_141536) do
+ActiveRecord::Schema.define(version: 2019_09_11_152104) do
 
   create_table "probabilities", force: :cascade do |t|
     t.string "name", null: false
     t.float "default_value"
     t.float "correction_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "search_ranges", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "left"
+    t.float "top"
+    t.float "right"
+    t.float "bottom"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

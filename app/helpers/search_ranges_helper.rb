@@ -1,0 +1,2 @@
+module SearchRangesHelper
+end

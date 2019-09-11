@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>サーチレンジ</h1>
+
+<% unless @search_ranges.empty? %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @search_ranges.each do |search_range| %>
+        <tr>
+          <td><%= search_range.id %></td>
+          <td><%= search_range.name %></td>
+          <td><%= link_to 'Show', search_range %></td>
+          <td><%= link_to 'Edit', edit_search_range_path(search_range) %></td>
+          <td><%= link_to 'Destroy', search_range, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<br>
+
+<%= link_to 'サーチレンジの新規作成', new_search_range_path %>
+<%= link_to '戻る', home_index_path %>

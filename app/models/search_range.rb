@@ -1,0 +1,2 @@
+class SearchRange < ApplicationRecord
+end
