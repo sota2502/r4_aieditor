@@ -1,5 +1,6 @@
 class ActionRulesController < ApplicationController
   before_action :set_action_rule, only: [:show, :edit, :update, :destroy]
+  before_action :set_action_group, only: [:show, :edit, :new]
 
   # GET /action_rules
   # GET /action_rules.json
@@ -14,7 +15,6 @@ class ActionRulesController < ApplicationController
 
   # GET /action_rules/new
   def new
-    @action_group = ActionGroup.find(params[:action_group_id])
     @action_rule = ActionRule.new
   end
 
@@ -66,6 +66,10 @@ class ActionRulesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_action_rule
       @action_rule = ActionRule.find(params[:id])
+    end
+
+    def set_action_group
+      @action_group = ActionGroup.find(params[:action_group_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
