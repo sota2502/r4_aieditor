@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :action_groups do
+    resources :action_rules
+  end
   resources :search_ranges
   resources :probabilities
   root to: 'home#index'

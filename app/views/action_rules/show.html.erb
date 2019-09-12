@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Action group:</strong>
+  <%= @action_rule.action_group_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @action_rule.name %>
+</p>
+
+<p>
+  <strong>Action type:</strong>
+  <%= @action_rule.action_type_id %>
+</p>
+
+<p>
+  <strong>Next act timing:</strong>
+  <%= @action_rule.next_act_timing_id %>
+</p>
+
+<p>
+  <strong>Holding time:</strong>
+  <%= @action_rule.holding_time %>
+</p>
+
+<p>
+  <strong>Velocity x:</strong>
+  <%= @action_rule.velocity_x %>
+</p>
+
+<p>
+  <strong>Velocity y:</strong>
+  <%= @action_rule.velocity_y %>
+</p>
+
+<%= link_to 'Edit', edit_action_rule_path(@action_rule) %> |
+<%= link_to 'Back', action_rules_path %>

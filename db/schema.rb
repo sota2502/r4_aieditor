@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_152104) do
+ActiveRecord::Schema.define(version: 2019_09_12_155100) do
+
+  create_table "action_groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "action_rules", force: :cascade do |t|
+    t.integer "action_group_id", null: false
+    t.integer "action_type_id"
+    t.integer "next_act_timing_id"
+    t.integer "holding_time"
+    t.float "velocity_x"
+    t.float "velocity_y"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["action_group_id"], name: "index_action_rules_on_action_group_id"
+  end
 
   create_table "probabilities", force: :cascade do |t|
     t.string "name", null: false
@@ -30,4 +48,5 @@ ActiveRecord::Schema.define(version: 2019_09_11_152104) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "action_rules", "action_groups"
 end

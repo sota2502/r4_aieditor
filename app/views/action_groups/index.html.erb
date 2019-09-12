@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>行動リスト</h1>
+
+<% unless @action_groups.empty? %>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @action_groups.each do |action_group| %>
+      <tr>
+        <td><%= action_group.id %></td>
+        <td><%= action_group.name %></td>
+        <td><%= link_to 'Show', action_group %></td>
+        <td><%= link_to 'Edit', edit_action_group_path(action_group) %></td>
+        <td><%= link_to 'Destroy', action_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
+<%= link_to 'New Action Group', new_action_group_path %>

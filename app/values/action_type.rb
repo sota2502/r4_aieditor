@@ -5,7 +5,7 @@ class ActionType
     3 => { name: :motion, caption: 'モーション' }
   }
 
-  attr_reader :caption
+  attr_reader :id, :caption
   
   def initialize(id)
     @id = id
