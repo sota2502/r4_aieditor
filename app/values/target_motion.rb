@@ -1,14 +1,14 @@
-class HpCondition
+class TargetMotion
   DEFINITION = {
-    1 => { caption: '30%以下' },
-    2 => { caption: '50%以下' },
-    3 => { caption: '70%以下' }
+    1 => { name: :all_attack, caption: '攻撃全般' },
+    2 => { name: :all_damage_motion, caption: 'ダメージモーション全般' }
   }
 
   attr_reader :id, :caption
   
   def initialize(id)
     @id = id
+    @name = DEFINITION[id][:name]
     @caption = DEFINITION[id][:caption]
   end
 

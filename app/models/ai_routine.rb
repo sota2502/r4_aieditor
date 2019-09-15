@@ -1,0 +1,2 @@
+class AiRoutine < ApplicationRecord
+end

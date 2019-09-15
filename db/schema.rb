@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_15_055909) do
+ActiveRecord::Schema.define(version: 2019_09_15_072606) do
 
   create_table "action_groups", force: :cascade do |t|
     t.string "name", null: false
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 2019_09_15_055909) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["action_group_id"], name: "index_action_rules_on_action_group_id"
+  end
+
+  create_table "ai_routines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "cancel_conditions", force: :cascade do |t|

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :ai_routines do
+    resources :hp_conditions, only: [:index, :show] do
+
+    end
+  end
   resources :action_groups do
     resources :action_rules do
       resources :cancel_conditions
