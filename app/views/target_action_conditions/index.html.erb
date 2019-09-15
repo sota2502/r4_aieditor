@@ -2,6 +2,9 @@
 
 <h1><%= @ai_routine.name %> / <%= @hp_condition.caption %> / ターゲット行動条件</h1>
 
+<% if @target_action_conditions.empty? %>
+何もありません
+<% else %>
 <table>
   <thead>
     <tr>
@@ -33,6 +36,7 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 
 <br>
 

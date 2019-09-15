@@ -10,6 +10,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>名前</th>
       <th colspan="3">操作</th>
     </tr>
@@ -18,8 +19,9 @@
   <tbody>
     <% @ai_routines.each do |ai_routine| %>
       <tr>
-        <td><%= ai_routine.name %></td>
-        <td><%= link_to '設定', ai_routine_hp_conditions_path(ai_routine) %></td>
+        <td><%= ai_routine.id %></td>
+        <td><%= link_to ai_routine.name, ai_routine_hp_conditions_path(ai_routine) %></td>
+        <td><%= link_to '出力', ai_routine_path(ai_routine, format: :json) %></td>
         <td><%= link_to '編集', edit_ai_routine_path(ai_routine) %></td>
         <td><%= link_to '削除', ai_routine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

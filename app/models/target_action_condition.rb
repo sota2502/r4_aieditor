@@ -1,4 +1,5 @@
 class TargetActionCondition < ApplicationRecord
+  belongs_to :ai_routine
   belongs_to :search_range
   belongs_to :probability
   belongs_to :action_group

@@ -5,7 +5,9 @@ class TargetActionConditionsController < ApplicationController
   # GET /target_action_conditions
   # GET /target_action_conditions.json
   def index
-    @target_action_conditions = TargetActionCondition.all
+    @target_action_conditions =
+      TargetActionCondition.where(ai_routine: @ai_routine,
+                                  hp_condition_id: @hp_condition.id)
   end
 
   # GET /target_action_conditions/1
@@ -75,6 +77,9 @@ class TargetActionConditionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def target_action_condition_params
-      params.require(:target_action_condition).permit(:hp_condition_id, :search_range_id, :target_type_id, :target_motion_id, :probability_id, :probability_coefficient, :previous_cancel_type, :action_group_id)
+      params.require(:target_action_condition)
+            .permit(:ai_routine_id, :hp_condition_id, :search_range_id, :target_type_id,
+                    :target_motion_id, :probability_id, :probability_coefficient,
+                    :previous_cancel_type, :action_group_id)
     end
 end
