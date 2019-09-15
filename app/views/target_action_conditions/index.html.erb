@@ -8,10 +8,10 @@
       <th>サーチレンジ</th>
       <th>ターゲット種別</th>
       <th>ターゲットモーション</th>
-      <th colspan=2>確率</th>
+      <th>確率</th>
       <th>前回行動キャンセル種別</th>
       <th>実行行動名</th>
-      <th colspan="2"></th>
+      <th colspan="2">操作</th>
     </tr>
   </thead>
 
@@ -27,8 +27,8 @@
         </td>
         <td><%= target_action_condition.previous_cancel_type %></td>
         <td><%= target_action_condition.action_group.name %></td>
-        <td><%= link_to 'Edit', edit_ai_routine_hp_condition_target_action_condition_path(@ai_routine, @hp_condition.id, target_action_condition) %></td>
-        <td><%= link_to 'Destroy', ai_routine_hp_condition_target_action_condition_path(@ai_routine, @hp_condition.id, target_action_condition), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '編集', edit_ai_routine_hp_condition_target_action_condition_path(@ai_routine, @hp_condition.id, target_action_condition) %></td>
+        <td><%= link_to '削除', ai_routine_hp_condition_target_action_condition_path(@ai_routine, @hp_condition.id, target_action_condition), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
