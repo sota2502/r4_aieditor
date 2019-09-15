@@ -7,7 +7,7 @@ class TargetType
     5 => { name: :enemy_object, caption: '敵オブジェクト' }
   }
 
-  attr_reader :name, :caption
+  attr_reader :id, :name, :caption
   
   def initialize(id)
     @id = id

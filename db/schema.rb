@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_15_072606) do
+ActiveRecord::Schema.define(version: 2019_09_15_084804) do
 
   create_table "action_groups", force: :cascade do |t|
     t.string "name", null: false
@@ -67,7 +67,26 @@ ActiveRecord::Schema.define(version: 2019_09_15_072606) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "target_action_conditions", force: :cascade do |t|
+    t.integer "hp_condition_id"
+    t.integer "search_range_id", null: false
+    t.integer "target_type_id"
+    t.integer "target_motion_id"
+    t.integer "probability_id", null: false
+    t.float "probability_coefficient"
+    t.integer "previous_cancel_type"
+    t.integer "action_group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["action_group_id"], name: "index_target_action_conditions_on_action_group_id"
+    t.index ["probability_id"], name: "index_target_action_conditions_on_probability_id"
+    t.index ["search_range_id"], name: "index_target_action_conditions_on_search_range_id"
+  end
+
   add_foreign_key "action_rules", "action_groups"
   add_foreign_key "cancel_conditions", "action_rules"
   add_foreign_key "cancel_conditions", "probabilities"
+  add_foreign_key "target_action_conditions", "action_groups"
+  add_foreign_key "target_action_conditions", "probabilities"
+  add_foreign_key "target_action_conditions", "search_ranges"
 end

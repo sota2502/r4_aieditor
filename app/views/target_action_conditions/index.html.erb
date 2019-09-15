@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @ai_routine.name %> / <%= @hp_condition.caption %> / ターゲット行動条件</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>サーチレンジ</th>
+      <th>ターゲット種別</th>
+      <th>ターゲットモーション</th>
+      <th colspan=2>確率</th>
+      <th>前回行動キャンセル種別</th>
+      <th>実行行動名</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @target_action_conditions.each do |target_action_condition| %>
+      <tr>
+        <td><%= target_action_condition.search_range.name %></td>
+        <td><%= target_action_condition.target_type.caption %></td>
+        <td><%= target_action_condition.target_motion.caption %></td>
+        <td>
+          変数名:<%= target_action_condition.probability.name %><br>
+          係数: <%= target_action_condition.probability_coefficient %>
+        </td>
+        <td><%= target_action_condition.previous_cancel_type %></td>
+        <td><%= target_action_condition.action_group.name %></td>
+        <td><%= link_to 'Edit', edit_ai_routine_hp_condition_target_action_condition_path(@ai_routine, @hp_condition.id, target_action_condition) %></td>
+        <td><%= link_to 'Destroy', ai_routine_hp_condition_target_action_condition_path(@ai_routine, @hp_condition.id, target_action_condition), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'ターゲット行動条件の追加', new_ai_routine_hp_condition_target_action_condition_path(@ai_routine, @hp_condition.id) %>

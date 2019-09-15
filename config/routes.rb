@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :ai_routines do
     resources :hp_conditions, only: [:index, :show] do
-
+      resources :target_action_conditions
     end
   end
   resources :action_groups do

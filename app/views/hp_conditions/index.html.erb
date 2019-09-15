@@ -2,7 +2,7 @@
 
 <% hp_condition_options = HpCondition.all.map { |hp| [hp.caption, hp.id] } %>
 
-<%= form_with url: ai_routine_hp_conditions_path(@ai_routine), method: :get do |form| %>
+<%= form_with url: request.path, method: :get, local: true do |form| %>
   <%= form.select :hp_condition_id, hp_condition_options %>
   <%= form.submit 'Submit' %>
 <% end %>
