@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :action_groups do
-    resources :action_rules
+    resources :action_rules do
+      resources :cancel_conditions
+    end
   end
   resources :search_ranges
   resources :probabilities

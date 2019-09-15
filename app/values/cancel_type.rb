@@ -7,7 +7,7 @@ class CancelType
     5 => { name: :target_motion, caption: 'ターゲットモーション時' }
   }
 
-  attr_reader :caption
+  attr_reader :id, :caption
   
   def initialize(id)
     @id = id

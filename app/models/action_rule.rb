@@ -1,5 +1,6 @@
 class ActionRule < ApplicationRecord
   belongs_to :action_group
+  has_many :cancel_condition
 
   def action_type
     @action_type ||= begin
@@ -11,5 +12,9 @@ class ActionRule < ApplicationRecord
     @next_act_timing ||= begin
       NextActTiming.new(self.next_act_timing_id)
     end
+  end
+
+  def caption
+    "ID:#{self.id},Type:#{action_type.caption}"
   end
 end

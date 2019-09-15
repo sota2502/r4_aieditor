@@ -1,0 +1,46 @@
+<%= form_with(model: [@action_group, @action_rule, cancel_condition], local: true) do |form| %>
+  <% if cancel_condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cancel_condition.errors.count, "error") %> prohibited this cancel_condition from being saved:</h2>
+
+      <ul>
+        <% cancel_condition.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :action_rule_id, value: @action_rule.id %>
+
+  <div class="field">
+    <% cancel_type_options = CancelType.all.map { |ct| [ct.caption, ct.id] } %>
+    <%= form.label :cancel_type_id, 'キャンセル条件種別' %>
+    <%= form.select :cancel_type_id, cancel_type_options %>
+  </div>
+
+  <div class="field">
+    <% probability_options = Probability.all.map { |pr| [pr.name, pr.id] } %>
+    <%= form.label :probability_id, '実行確率(確率変数名)' %>
+    <%= form.select :probability_id, probability_options %>
+  </div>
+
+  <div class="field">
+    <%= form.label :probability_coefficient, '実行確率(係数)'  %>
+    <%= form.text_field :probability_coefficient %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parameter1, 'パラメータ1' %>
+    <%= form.text_field :parameter1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parameter2, 'パラメータ2' %>
+    <%= form.text_field :parameter2 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

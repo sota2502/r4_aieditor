@@ -1,6 +1,6 @@
 class ActionRulesController < ApplicationController
   before_action :set_action_rule, only: [:show, :edit, :update, :destroy]
-  before_action :set_action_group, only: [:show, :edit, :new]
+  before_action :set_action_group
 
   # GET /action_rules
   # GET /action_rules.json

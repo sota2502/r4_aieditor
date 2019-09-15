@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_155100) do
+ActiveRecord::Schema.define(version: 2019_09_15_055909) do
 
   create_table "action_groups", force: :cascade do |t|
     t.string "name", null: false
@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(version: 2019_09_12_155100) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["action_group_id"], name: "index_action_rules_on_action_group_id"
+  end
+
+  create_table "cancel_conditions", force: :cascade do |t|
+    t.integer "action_rule_id", null: false
+    t.integer "cancel_type_id"
+    t.integer "probability_id", null: false
+    t.float "probability_coefficient"
+    t.float "parameter1"
+    t.float "parameter2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["action_rule_id"], name: "index_cancel_conditions_on_action_rule_id"
+    t.index ["probability_id"], name: "index_cancel_conditions_on_probability_id"
   end
 
   create_table "probabilities", force: :cascade do |t|
@@ -49,4 +62,6 @@ ActiveRecord::Schema.define(version: 2019_09_12_155100) do
   end
 
   add_foreign_key "action_rules", "action_groups"
+  add_foreign_key "cancel_conditions", "action_rules"
+  add_foreign_key "cancel_conditions", "probabilities"
 end

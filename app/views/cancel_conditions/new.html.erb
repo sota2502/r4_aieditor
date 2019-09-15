@@ -1,0 +1,5 @@
+<h1><%= @action_group.name %> / 行動(<%= @action_rule.caption %>) / キャンセル条件の追加</h1>
+
+<%= render 'form', cancel_condition: @cancel_condition %>
+
+<%= link_to 'Back', action_group_path(@action_group) %>
