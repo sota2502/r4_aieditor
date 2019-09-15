@@ -1,14 +1,15 @@
 class HpCondition
   DEFINITION = {
-    1 => { caption: '30%以下' },
-    2 => { caption: '50%以下' },
-    3 => { caption: '70%以下' }
+    1 => { name: 'under30%', caption: '30%以下' },
+    2 => { name: 'under50%', caption: '50%以下' },
+    3 => { name: 'under70%', caption: '70%以下' }
   }
 
-  attr_reader :id, :caption
+  attr_reader :id, :name, :caption
   
   def initialize(id)
     @id = id
+    @name = DEFINITION[id][:name]
     @caption = DEFINITION[id][:caption]
   end
 

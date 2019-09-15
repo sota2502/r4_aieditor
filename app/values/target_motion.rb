@@ -4,7 +4,7 @@ class TargetMotion
     2 => { name: :all_damage_motion, caption: 'ダメージモーション全般' }
   }
 
-  attr_reader :id, :caption
+  attr_reader :id, :name, :caption
   
   def initialize(id)
     @id = id

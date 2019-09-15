@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_09_15_084804) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["action_group_id"], name: "index_target_action_conditions_on_action_group_id"
-    t.index ["ai_routine_id", "hp_condition_id"], name: "index_ai_routine_and_hp_condition", unique: true
+    t.index ["ai_routine_id", "hp_condition_id"], name: "index_ai_routine_and_hp_condition"
     t.index ["probability_id"], name: "index_target_action_conditions_on_probability_id"
     t.index ["search_range_id"], name: "index_target_action_conditions_on_search_range_id"
   end

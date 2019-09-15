@@ -1,5 +1,5 @@
 class CreateTargetActionConditions < ActiveRecord::Migration[6.0]
-  def up
+  def change
     create_table :target_action_conditions do |t|
       t.references :ai_routine, null: false, foreign_key: true, index: false
       t.integer :hp_condition_id, null: false
@@ -14,7 +14,6 @@ class CreateTargetActionConditions < ActiveRecord::Migration[6.0]
       t.timestamps
     end
     add_index :target_action_conditions, [:ai_routine_id, :hp_condition_id],
-              unique: true,
               name: :index_ai_routine_and_hp_condition
   end
 
