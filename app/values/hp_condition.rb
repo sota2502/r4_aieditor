@@ -5,7 +5,7 @@ class HPCondition
     3 => { caption: '70%以下' }
   }
 
-  attr_reader :caption
+  attr_reader :id, :caption
   
   def initialize(id)
     @id = id

@@ -15,32 +15,32 @@
 
   <div class="field">
     <% action_type_options = ActionType.all.map { |at| [at.caption, at.id] } %>
-    <%= form.label :action_type_id %>
+    <%= form.label :action_type_id, '行動種別' %>
     <%= form.select :action_type_id, action_type_options %>
   </div>
 
   <div class="field">
     <% next_act_timing_options = NextActTiming.all.map { |at| [at.caption, at.id] } %>
-    <%= form.label :next_act_timing_id %>
+    <%= form.label :next_act_timing_id, '次行動発動タイミング' %>
     <%= form.select :action_type_id, next_act_timing_options %>
   </div>
 
   <div class="field">
-    <%= form.label :holding_time %>
+    <%= form.label :holding_time, 'ホールド時間' %>
     <%= form.number_field :holding_time %>
   </div>
 
   <div class="field">
-    <%= form.label :velocity_x %>
+    <%= form.label :velocity_x, '移動速度X' %>
     <%= form.text_field :velocity_x %>
   </div>
 
   <div class="field">
-    <%= form.label :velocity_y %>
+    <%= form.label :velocity_y, '移動速度Y' %>
     <%= form.text_field :velocity_y %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Submit' %>
   </div>
 <% end %>

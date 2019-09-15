@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>行動 - <%=@action_group.name %></h1>
+<h1><%=@action_group.name %></h1>
 
 <h2>行動ルールリスト</h2>
 
@@ -40,6 +40,6 @@
   <%= link_to '行動ルールの追加', new_action_group_action_rule_path(@action_group) %>
 </div>
 <div>
-  <%= link_to 'Edit', edit_action_group_path(@action_group) %> |
-  <%= link_to 'Back', action_groups_path %>
+  <%= link_to '編集', edit_action_group_path(@action_group) %> |
+  <%= link_to '戻る', action_groups_path %>
 </div>
