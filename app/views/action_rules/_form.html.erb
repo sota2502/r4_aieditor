@@ -22,7 +22,7 @@
   <div class="field">
     <% next_act_timing_options = NextActTiming.all.map { |at| [at.caption, at.id] } %>
     <%= form.label :next_act_timing_id, '次行動発動タイミング' %>
-    <%= form.select :action_type_id, next_act_timing_options %>
+    <%= form.select :next_act_timing_id, next_act_timing_options %>
   </div>
 
   <div class="field">

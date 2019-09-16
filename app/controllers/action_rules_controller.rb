@@ -29,7 +29,7 @@ class ActionRulesController < ApplicationController
 
     respond_to do |format|
       if @action_rule.save
-        format.html { redirect_to @action_rule, notice: 'Action rule was successfully created.' }
+        format.html { redirect_to action_group_url(@action_group) }
         format.json { render :show, status: :created, location: @action_rule }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ActionRulesController < ApplicationController
   def update
     respond_to do |format|
       if @action_rule.update(action_rule_params)
-        format.html { redirect_to @action_rule, notice: 'Action rule was successfully updated.' }
+        format.html { redirect_to action_group_url(@action_group) }
         format.json { render :show, status: :ok, location: @action_rule }
       else
         format.html { render :edit }

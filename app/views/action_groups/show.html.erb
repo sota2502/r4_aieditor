@@ -23,7 +23,7 @@
       <tr>
         <td><%= action_rule.id %></td>
         <td><%= action_rule.action_type.caption %></td>
-        <td><%= action_rule.next_act_timing.caption %></td>
+        <td><%= action_rule.next_act_timing&.caption %></td>
         <td><%= action_rule.holding_time %></td>
         <td>X: <%= action_rule.velocity_x %></td>
         <td>Y: <%= action_rule.velocity_y %></td>

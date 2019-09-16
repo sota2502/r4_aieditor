@@ -10,7 +10,11 @@ class ActionRule < ApplicationRecord
 
   def next_act_timing 
     @next_act_timing ||= begin
-      NextActTiming.new(self.next_act_timing_id)
+      if self.next_act_timing_id.nil?
+        nil
+      else
+        NextActTiming.new(self.next_act_timing_id)
+      end
     end
   end
 

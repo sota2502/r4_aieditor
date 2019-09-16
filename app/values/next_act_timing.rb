@@ -5,7 +5,7 @@ class NextActTiming
     3 => { name: :holding_end, caption: 'ホールド時間経過時' }
   }
 
-  attr_reader :id, :caption
+  attr_reader :id, :name, :caption
   
   def initialize(id)
     @id = id

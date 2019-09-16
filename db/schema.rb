@@ -12,14 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_09_15_084804) do
 
-  create_table "action_groups", force: :cascade do |t|
+  create_table "action_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "action_rules", force: :cascade do |t|
-    t.integer "action_group_id", null: false
+  create_table "action_rules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "action_group_id", null: false
     t.integer "action_type_id"
     t.integer "next_act_timing_id"
     t.integer "holding_time"
@@ -30,16 +30,16 @@ ActiveRecord::Schema.define(version: 2019_09_15_084804) do
     t.index ["action_group_id"], name: "index_action_rules_on_action_group_id"
   end
 
-  create_table "ai_routines", force: :cascade do |t|
+  create_table "ai_routines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "cancel_conditions", force: :cascade do |t|
-    t.integer "action_rule_id", null: false
+  create_table "cancel_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "action_rule_id", null: false
     t.integer "cancel_type_id"
-    t.integer "probability_id", null: false
+    t.bigint "probability_id", null: false
     t.float "probability_coefficient"
     t.float "parameter1"
     t.float "parameter2"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_09_15_084804) do
     t.index ["probability_id"], name: "index_cancel_conditions_on_probability_id"
   end
 
-  create_table "probabilities", force: :cascade do |t|
+  create_table "probabilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.float "default_value"
     t.float "correction_value"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_09_15_084804) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "search_ranges", force: :cascade do |t|
+  create_table "search_ranges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.float "left"
     t.float "top"
@@ -67,16 +67,16 @@ ActiveRecord::Schema.define(version: 2019_09_15_084804) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "target_action_conditions", force: :cascade do |t|
-    t.integer "ai_routine_id", null: false
+  create_table "target_action_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "ai_routine_id", null: false
     t.integer "hp_condition_id", null: false
-    t.integer "search_range_id", null: false
+    t.bigint "search_range_id", null: false
     t.integer "target_type_id"
     t.integer "target_motion_id"
-    t.integer "probability_id"
+    t.bigint "probability_id"
     t.float "probability_coefficient"
     t.integer "previous_cancel_type"
-    t.integer "action_group_id", null: false
+    t.bigint "action_group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["action_group_id"], name: "index_target_action_conditions_on_action_group_id"
