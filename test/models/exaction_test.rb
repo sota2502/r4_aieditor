@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HpConditionControllerTest < ActionDispatch::IntegrationTest
+class ExactionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

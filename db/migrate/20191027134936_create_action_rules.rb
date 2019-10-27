@@ -7,7 +7,7 @@ class CreateActionRules < ActiveRecord::Migration[6.0]
       t.integer :move_y
       t.integer :next, null: false
       t.references :search, null: false, foreign_key: true
-      t.integer :target_value
+      t.integer :target_value, null: true
       t.unsigned_integer :hold
 
       t.timestamps

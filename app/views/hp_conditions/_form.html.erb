@@ -1,0 +1,27 @@
+<%= form_with(model: hp_condition, local: true) do |form| %>
+  <% if hp_condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hp_condition.errors.count, "error") %> prohibited this hp_condition from being saved:</h2>
+
+      <ul>
+        <% hp_condition.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :exaction_id %>
+    <%= form.text_field :exaction_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

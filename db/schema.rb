@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_27_135021) do
+ActiveRecord::Schema.define(version: 2019_10_27_141631) do
 
   create_table "action_chain_cancels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "action_chain_id", null: false
@@ -64,10 +64,27 @@ ActiveRecord::Schema.define(version: 2019_10_27_135021) do
     t.index ["project_id"], name: "index_action_states_on_project_id"
   end
 
+  create_table "actions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "hp_condition_id", null: false
+    t.bigint "search_id", null: false
+    t.integer "target_value"
+    t.integer "motion_id"
+    t.bigint "rate_id"
+    t.integer "rate_coefficient", unsigned: true
+    t.integer "cancel_type"
+    t.bigint "action_chain_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["action_chain_id"], name: "index_actions_on_action_chain_id"
+    t.index ["hp_condition_id"], name: "index_actions_on_hp_condition_id"
+    t.index ["rate_id"], name: "index_actions_on_rate_id"
+    t.index ["search_id"], name: "index_actions_on_search_id"
+  end
+
   create_table "cancel_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.integer "cancel_type", null: false
-    t.bigint "rate_id", null: false
+    t.bigint "rate_id"
     t.integer "rate_coefficient", unsigned: true
     t.integer "parameter1"
     t.integer "parameter2"
@@ -75,6 +92,22 @@ ActiveRecord::Schema.define(version: 2019_10_27_135021) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_cancel_conditions_on_project_id"
     t.index ["rate_id"], name: "index_cancel_conditions_on_rate_id"
+  end
+
+  create_table "exactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_exactions_on_project_id"
+  end
+
+  create_table "hp_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "exaction_id", null: false
+    t.integer "value", null: false, unsigned: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exaction_id"], name: "index_hp_conditions_on_exaction_id"
   end
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -120,8 +153,14 @@ ActiveRecord::Schema.define(version: 2019_10_27_135021) do
   add_foreign_key "action_rules", "action_chains"
   add_foreign_key "action_rules", "searches"
   add_foreign_key "action_states", "projects"
+  add_foreign_key "actions", "action_chains"
+  add_foreign_key "actions", "hp_conditions"
+  add_foreign_key "actions", "rates"
+  add_foreign_key "actions", "searches"
   add_foreign_key "cancel_conditions", "projects"
   add_foreign_key "cancel_conditions", "rates"
+  add_foreign_key "exactions", "projects"
+  add_foreign_key "hp_conditions", "exactions"
   add_foreign_key "rates", "action_states"
   add_foreign_key "searches", "action_states"
   add_foreign_key "targets", "action_states"

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Exaction:</strong>
+  <%= @hp_condition.exaction_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @hp_condition.value %>
+</p>
+
+<%= link_to 'Edit', edit_hp_condition_path(@hp_condition) %> |
+<%= link_to 'Back', hp_conditions_path %>

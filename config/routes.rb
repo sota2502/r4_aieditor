@@ -11,7 +11,14 @@ Rails.application.routes.draw do
     resources :action_chains do
       resources :action_rules
     end
+
+    resources :exactions do
+      resources :hp_conditions do
+        resources :actions
+      end
+    end
   end
+
   root to: 'projects#index'
   get 'home/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
