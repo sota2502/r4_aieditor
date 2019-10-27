@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Action state:</strong>
+  <%= @search.action_state_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @search.name %>
+</p>
+
+<p>
+  <strong>X1:</strong>
+  <%= @search.x1 %>
+</p>
+
+<p>
+  <strong>Y1:</strong>
+  <%= @search.y1 %>
+</p>
+
+<p>
+  <strong>X2:</strong>
+  <%= @search.x2 %>
+</p>
+
+<p>
+  <strong>Y2:</strong>
+  <%= @search.y2 %>
+</p>
+
+<%= link_to 'Edit', edit_search_path(@search) %> |
+<%= link_to 'Back', searches_path %>

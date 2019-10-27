@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  action_state: one
+  name: MyString
+  x1: 1
+  y1: 1
+  x2: 1
+  y2: 1
+
+two:
+  action_state: two
+  name: MyString
+  x1: 1
+  y1: 1
+  x2: 1
+  y2: 1

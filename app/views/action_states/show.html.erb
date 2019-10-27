@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @action_state.project_id %>
+</p>
+
+<p>
+  <strong>Chara:</strong>
+  <%= @action_state.chara %>
+</p>
+
+<p>
+  <strong>Field:</strong>
+  <%= @action_state.field %>
+</p>
+
+<p>
+  <strong>Freq:</strong>
+  <%= @action_state.freq %>
+</p>
+
+<p>
+  <strong>Precis:</strong>
+  <%= @action_state.precis %>
+</p>
+
+<%= link_to 'Edit', edit_action_state_path(@action_state) %> |
+<%= link_to 'Back', action_states_path %>

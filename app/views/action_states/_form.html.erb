@@ -1,0 +1,42 @@
+<%= form_with(model: action_state, local: true) do |form| %>
+  <% if action_state.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(action_state.errors.count, "error") %> prohibited this action_state from being saved:</h2>
+
+      <ul>
+        <% action_state.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :chara %>
+    <%= form.text_field :chara %>
+  </div>
+
+  <div class="field">
+    <%= form.label :field %>
+    <%= form.text_field :field %>
+  </div>
+
+  <div class="field">
+    <%= form.label :freq %>
+    <%= form.text_field :freq %>
+  </div>
+
+  <div class="field">
+    <%= form.label :precis %>
+    <%= form.text_field :precis %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

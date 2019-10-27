@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Action States</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Chara</th>
+      <th>Field</th>
+      <th>Freq</th>
+      <th>Precis</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @action_states.each do |action_state| %>
+      <tr>
+        <td><%= action_state.project_id %></td>
+        <td><%= action_state.chara %></td>
+        <td><%= action_state.field %></td>
+        <td><%= action_state.freq %></td>
+        <td><%= action_state.precis %></td>
+        <td><%= link_to 'Show', action_state %></td>
+        <td><%= link_to 'Edit', edit_action_state_path(action_state) %></td>
+        <td><%= link_to 'Destroy', action_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Action State', new_action_state_path %>
