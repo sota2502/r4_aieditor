@@ -1,7 +1,0 @@
-<h1><%= @ai_routine.name %> / <%= @hp_condition.caption %> / ターゲット行動条件の編集</h1>
-
-<%= render 'form',
-  target_action_condition: @target_action_condition,
-  form_url: ai_routine_hp_condition_target_action_condition_path(@ai_routine, @hp_condition.id, @target_action_condition)%>
-
-<%= link_to '戻る', ai_routine_hp_condition_target_action_conditions_path(@ai_routine, @hp_condition.id) %>
