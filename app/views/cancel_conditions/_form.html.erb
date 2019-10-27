@@ -1,0 +1,47 @@
+<%= form_with(model: cancel_condition, local: true) do |form| %>
+  <% if cancel_condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cancel_condition.errors.count, "error") %> prohibited this cancel_condition from being saved:</h2>
+
+      <ul>
+        <% cancel_condition.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cancel_type %>
+    <%= form.number_field :cancel_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate_id %>
+    <%= form.text_field :rate_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate_coefficient %>
+    <%= form.text_field :rate_coefficient %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parameter1 %>
+    <%= form.number_field :parameter1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parameter2 %>
+    <%= form.number_field :parameter2 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

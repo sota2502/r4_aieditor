@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @action_chain.project_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @action_chain.name %>
+</p>
+
+<%= link_to 'Edit', edit_action_chain_path(@action_chain) %> |
+<%= link_to 'Back', action_chains_path %>

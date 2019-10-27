@@ -1,0 +1,57 @@
+<%= form_with(model: action_rule, local: true) do |form| %>
+  <% if action_rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(action_rule.errors.count, "error") %> prohibited this action_rule from being saved:</h2>
+
+      <ul>
+        <% action_rule.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :action_chain_id %>
+    <%= form.text_field :action_chain_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :motion_id %>
+    <%= form.number_field :motion_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :move_x %>
+    <%= form.number_field :move_x %>
+  </div>
+
+  <div class="field">
+    <%= form.label :move_y %>
+    <%= form.number_field :move_y %>
+  </div>
+
+  <div class="field">
+    <%= form.label :next %>
+    <%= form.number_field :next %>
+  </div>
+
+  <div class="field">
+    <%= form.label :search_id %>
+    <%= form.text_field :search_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :target_value %>
+    <%= form.number_field :target_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hold %>
+    <%= form.text_field :hold %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

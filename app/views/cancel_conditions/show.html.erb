@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @cancel_condition.project_id %>
+</p>
+
+<p>
+  <strong>Cancel type:</strong>
+  <%= @cancel_condition.cancel_type %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @cancel_condition.rate_id %>
+</p>
+
+<p>
+  <strong>Rate coefficient:</strong>
+  <%= @cancel_condition.rate_coefficient %>
+</p>
+
+<p>
+  <strong>Parameter1:</strong>
+  <%= @cancel_condition.parameter1 %>
+</p>
+
+<p>
+  <strong>Parameter2:</strong>
+  <%= @cancel_condition.parameter2 %>
+</p>
+
+<%= link_to 'Edit', edit_cancel_condition_path(@cancel_condition) %> |
+<%= link_to 'Back', cancel_conditions_path %>

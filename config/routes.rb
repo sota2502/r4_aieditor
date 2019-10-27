@@ -5,6 +5,12 @@ Rails.application.routes.draw do
       resources :rates
       resources :searches
     end
+
+    resources :cancel_conditions
+
+    resources :action_chains do
+      resources :action_rules
+    end
   end
   root to: 'projects#index'
   get 'home/index'
