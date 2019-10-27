@@ -10,6 +10,9 @@ class AiRoutinesController < ApplicationController
   # GET /ai_routines/1
   # GET /ai_routines/1.json
   def show
+    respond_to do |format|
+      format.text { render plain: lua_string }
+    end
   end
 
   # GET /ai_routines/new
@@ -70,5 +73,13 @@ class AiRoutinesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ai_routine_params
       params.require(:ai_routine).permit(:name)
+    end
+
+    def lua_string
+      state = ::Lua::State.new
+      state.__load_stdlib :all
+      state.ai_routine = @ai_routine.render
+      state.__eval "result = require 'pl.pretty'.write(ai_routine)"
+      state.result
     end
 end

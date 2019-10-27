@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    container_name: mysql_db
+    image: mysql:5.7
+    volumes:
+      - ~/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: SdXbrfuypaVy
+  app:
+    container_name: app
+    image: sota2502/aieditor:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - .:/aieditor
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    command: /bin/bash
+#    environment:
+#      - RAILS_ENV=production
+#      - DB_NAME=heroku_docker_production
+#      - DB_USERNAME=root
+#      - DB_PASSWORD=SdXbrfuypaVy
+#      - DB_HOSTNAME=mysql_db

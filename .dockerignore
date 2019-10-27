@@ -1,0 +1,7 @@
+# Rails
+log/*.log
+tmp
+vendor/bundle
+
+# Node
+node_modules
