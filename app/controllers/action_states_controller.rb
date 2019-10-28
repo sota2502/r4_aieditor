@@ -1,4 +1,5 @@
 class ActionStatesController < ApplicationController
+  include Projectable
   before_action :set_action_state, only: [:show, :edit, :update, :destroy]
 
   # GET /action_states
@@ -42,7 +43,7 @@ class ActionStatesController < ApplicationController
   def update
     respond_to do |format|
       if @action_state.update(action_state_params)
-        format.html { redirect_to @action_state, notice: 'Action state was successfully updated.' }
+        format.html { redirect_to [project, @action_state], notice: 'Action state was successfully updated.' }
         format.json { render :show, status: :ok, location: @action_state }
       else
         format.html { render :edit }

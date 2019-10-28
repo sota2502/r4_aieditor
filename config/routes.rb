@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resources :projects do
     resources :action_states do
       resources :targets
-      resources :rates
-      resources :searches
+      resources :rates, except: [:show, :new, :edit]
+      resources :searches, except: [:show, :new, :edit]
     end
 
     resources :cancel_conditions

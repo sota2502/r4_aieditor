@@ -1,29 +1,41 @@
+<h1><%= project.name %> / Action State</h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Project:</strong>
-  <%= @action_state.project_id %>
-</p>
+<h2>属性</h2>
+<dl class="dl-horizontal">
+  <dt>Chara</dt>
+  <dd><%= @action_state.chara %></dd>
 
-<p>
-  <strong>Chara:</strong>
-  <%= @action_state.chara %>
-</p>
+  <dt>Field</dt>
+  <dd><%= @action_state.field %></dd>
 
-<p>
-  <strong>Field:</strong>
-  <%= @action_state.field %>
-</p>
+  <dt>Freq</dt>
+  <dd><%= @action_state.freq %></dd>
 
-<p>
-  <strong>Freq:</strong>
-  <%= @action_state.freq %>
-</p>
+  <dt>Precis</dt>
+  <dd><%= @action_state.precis %></dd>
+</dl>
 
-<p>
-  <strong>Precis:</strong>
-  <%= @action_state.precis %>
-</p>
+<h2>サーチ</h2>
 
-<%= link_to 'Edit', edit_action_state_path(@action_state) %> |
-<%= link_to 'Back', action_states_path %>
+<div>
+  <%= link_to '一覧', project_action_state_searches_path(project, @action_state) %>
+</div>
+
+<h2>確率変数</h2>
+
+<div>
+  <%= link_to '一覧', project_action_state_rates_path(project, @action_state) %>
+</div>
+
+<h2>ターゲット</h2>
+
+<div>
+  <%= link_to '一覧', project_action_state_targets_path(project, @action_state) %>
+</div>
+
+<br>
+
+<%= link_to 'Edit', edit_project_action_state_path(project, @action_state) %> |
+<%= link_to 'Back', project_path(project) %>

@@ -1,27 +1,8 @@
-<%= form_with(model: target, local: true) do |form| %>
-  <% if target.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(target.errors.count, "error") %> prohibited this target from being saved:</h2>
+<%= form_with(model: [project, action_state, target], local: true) do |form| %>
+  <%= form.hidden_field :action_state_id, value: action_state.id %>
 
-      <ul>
-        <% target.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :action_state_id %>
-    <%= form.text_field :action_state_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :value %>
-    <%= form.number_field :value %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <tr>
+    <td><%= form.collection_select(:value, TargetType.all, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
+    <td colspan="2"><%= form.submit '送信', class: 'btn btn-primary' %></td>
+  </tr>
 <% end %>

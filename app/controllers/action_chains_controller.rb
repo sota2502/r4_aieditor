@@ -1,4 +1,5 @@
 class ActionChainsController < ApplicationController
+  include Projectable
   before_action :set_action_chain, only: [:show, :edit, :update, :destroy]
 
   # GET /action_chains

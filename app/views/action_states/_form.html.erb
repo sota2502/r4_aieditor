@@ -1,4 +1,4 @@
-<%= form_with(model: action_state, local: true) do |form| %>
+<%= form_with(model: [project, action_state], local: true, class: 'form-horizontal') do |form| %>
   <% if action_state.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(action_state.errors.count, "error") %> prohibited this action_state from being saved:</h2>
@@ -11,32 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :project_id %>
-    <%= form.text_field :project_id %>
+  <%= form.hidden_field :project_id, value: project.id %>
+
+  <div class="form-group">
+    <%= form.label :chara, 'キャラクタ名', class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= form.text_field :chara, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :chara %>
-    <%= form.text_field :chara %>
+  <div class="form-group">
+    <%= form.label :field, 'フィールド名', class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= form.text_field :field, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :field %>
-    <%= form.text_field :field %>
+  <div class="form-group">
+    <%= form.label :freq, '行動ルーチン実行頻度（フレーム数）', class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= form.text_field :freq, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :freq %>
-    <%= form.text_field :freq %>
+  <div class="form-group">
+    <%= form.label :precis, 'パラメタ推定精度幅(%)', class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= form.text_field :precis, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :precis %>
-    <%= form.text_field :precis %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit "送信", class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>

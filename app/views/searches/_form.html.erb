@@ -1,47 +1,11 @@
-<%= form_with(model: search, local: true) do |form| %>
-  <% if search.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(search.errors.count, "error") %> prohibited this search from being saved:</h2>
-
-      <ul>
-        <% search.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :action_state_id %>
-    <%= form.text_field :action_state_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :x1 %>
-    <%= form.number_field :x1 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :y1 %>
-    <%= form.number_field :y1 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :x2 %>
-    <%= form.number_field :x2 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :y2 %>
-    <%= form.number_field :y2 %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= form_with(model: [project, action_state, search], local: true) do |form| %>
+  <%= form.hidden_field :action_state_id, value: action_state.id %>
+  <tr>
+    <td><%= form.text_field :name, class: 'form-control' %></td>
+    <td><%= form.number_field :x1, class: 'form-control' %></td>
+    <td><%= form.number_field :y1, class: 'form-control' %></td>
+    <td><%= form.number_field :x2, class: 'form-control' %></td>
+    <td><%= form.number_field :y2, class: 'form-control' %></td>
+    <td colspan="2"><%= form.submit '送信', class: 'btn btn-primary' %></td>
+  </tr>
 <% end %>

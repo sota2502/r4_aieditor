@@ -1,24 +1,14 @@
 class SearchesController < ApplicationController
-  before_action :set_search, only: [:show, :edit, :update, :destroy]
+  include Projectable
+  include ActionStatable
+
+  before_action :set_search, only: [:update, :destroy]
 
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all
-  end
-
-  # GET /searches/1
-  # GET /searches/1.json
-  def show
-  end
-
-  # GET /searches/new
-  def new
     @search = Search.new
-  end
-
-  # GET /searches/1/edit
-  def edit
+    @searches = Search.all
   end
 
   # POST /searches
@@ -28,11 +18,8 @@ class SearchesController < ApplicationController
 
     respond_to do |format|
       if @search.save
-        format.html { redirect_to @search, notice: 'Search was successfully created.' }
+        format.html { redirect_to after_write_path }
         format.json { render :show, status: :created, location: @search }
-      else
-        format.html { render :new }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +29,8 @@ class SearchesController < ApplicationController
   def update
     respond_to do |format|
       if @search.update(search_params)
-        format.html { redirect_to @search, notice: 'Search was successfully updated.' }
+        format.html { redirect_to after_write_path }
         format.json { render :show, status: :ok, location: @search }
-      else
-        format.html { render :edit }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +40,7 @@ class SearchesController < ApplicationController
   def destroy
     @search.destroy
     respond_to do |format|
-      format.html { redirect_to searches_url, notice: 'Search was successfully destroyed.' }
+      format.html { redirect_to after_write_path }
       format.json { head :no_content }
     end
   end
@@ -70,5 +54,9 @@ class SearchesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
       params.require(:search).permit(:action_state_id, :name, :x1, :y1, :x2, :y2)
+    end
+
+    def after_write_path
+      project_action_state_searches_path(project, action_state)
     end
 end

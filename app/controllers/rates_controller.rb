@@ -1,24 +1,14 @@
 class RatesController < ApplicationController
-  before_action :set_rate, only: [:show, :edit, :update, :destroy]
+  include Projectable
+  include ActionStatable
+  
+  before_action :set_rate, only: [:update, :destroy]
 
   # GET /rates
   # GET /rates.json
   def index
     @rates = Rate.all
-  end
-
-  # GET /rates/1
-  # GET /rates/1.json
-  def show
-  end
-
-  # GET /rates/new
-  def new
     @rate = Rate.new
-  end
-
-  # GET /rates/1/edit
-  def edit
   end
 
   # POST /rates
@@ -28,11 +18,8 @@ class RatesController < ApplicationController
 
     respond_to do |format|
       if @rate.save
-        format.html { redirect_to @rate, notice: 'Rate was successfully created.' }
+        format.html { redirect_to project_action_state_rates_path(project, action_state) }
         format.json { render :show, status: :created, location: @rate }
-      else
-        format.html { render :new }
-        format.json { render json: @rate.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +29,8 @@ class RatesController < ApplicationController
   def update
     respond_to do |format|
       if @rate.update(rate_params)
-        format.html { redirect_to @rate, notice: 'Rate was successfully updated.' }
+        format.html { redirect_to project_action_state_rates_path(project, action_state) }
         format.json { render :show, status: :ok, location: @rate }
-      else
-        format.html { render :edit }
-        format.json { render json: @rate.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +40,7 @@ class RatesController < ApplicationController
   def destroy
     @rate.destroy
     respond_to do |format|
-      format.html { redirect_to rates_url, notice: 'Rate was successfully destroyed.' }
+      format.html { redirect_to project_action_state_rates_path(project, action_state) }
       format.json { head :no_content }
     end
   end

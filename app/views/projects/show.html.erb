@@ -1,9 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<h1><%= @project.name %></h1>
+
+<ul>
+  <li>
+    <% if @project.action_state.present? %>
+      <%= link_to 'ActionState', project_action_state_path(@project, @project.action_state) %>
+    <% else %>
+      <%= link_to 'ActionState', new_project_action_state_path(@project) %>
+    <% end %>
+  </li>
+  <li><%= link_to 'ActionChain', project_action_chains_path(@project) %></li>
+  <li><%= link_to 'Exaction', project_exactions_path(@project) %></li>
+</ul>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
