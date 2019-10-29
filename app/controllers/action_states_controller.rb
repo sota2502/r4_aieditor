@@ -29,11 +29,8 @@ class ActionStatesController < ApplicationController
 
     respond_to do |format|
       if @action_state.save
-        format.html { redirect_to @action_state, notice: 'Action state was successfully created.' }
+        format.html { redirect_to [project, @action_state], notice: 'Action state was successfully created.' }
         format.json { render :show, status: :created, location: @action_state }
-      else
-        format.html { render :new }
-        format.json { render json: @action_state.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,9 +42,6 @@ class ActionStatesController < ApplicationController
       if @action_state.update(action_state_params)
         format.html { redirect_to [project, @action_state], notice: 'Action state was successfully updated.' }
         format.json { render :show, status: :ok, location: @action_state }
-      else
-        format.html { render :edit }
-        format.json { render json: @action_state.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +51,7 @@ class ActionStatesController < ApplicationController
   def destroy
     @action_state.destroy
     respond_to do |format|
-      format.html { redirect_to action_states_url, notice: 'Action state was successfully destroyed.' }
+      format.html { redirect_to project, notice: 'Action state was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
