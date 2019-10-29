@@ -1,0 +1,114 @@
+
+@startuml
+
+class project {
+  id
+  name
+}
+
+class action_state {
+  id
+  project_id
+  chara
+  field
+  freq
+  precis
+}
+
+class search {
+  action_state_id
+  name
+  x1
+  y1
+  x2
+  y2
+}
+
+class rate {
+  action_state_id
+  name
+  value
+}
+class target {
+  action_state_id
+  value
+}
+
+project "1" <-up- "N" action_state
+action_state "1" <-up- "N" search
+action_state "1" <-up- "N" rate
+action_state "1" <-up- "N" target
+
+class action_chain {
+  id
+  project_id
+  name
+}
+
+class cancel_condition {
+  project_id
+  cancel_type
+  rate
+  rate_coefficient
+  parameter1
+  parameter2
+}
+
+class action_chain_cancel {
+  action_chain_id
+  cancel_condition_id
+}
+
+class action_rule {
+  id
+  action_chain_id
+  motion_id
+  move_x
+  move_y
+  next
+  search_id
+  target_value
+  hold
+}
+
+class action_rule_cancel {
+  action_rule_id
+  cancel_condition_id
+}
+
+project "1" <-up- "N" action_chain
+action_chain "1" <-up- "N" action_chain_cancel
+cancel_condition "1" <-up- "N" action_chain_cancel
+action_chain "1" <-up- "N" action_rule
+action_rule "1" <-up- "N" action_rule_cancel
+cancel_condition "1" <-up- "N" action_rule_cancel
+
+class exaction {
+  project_id
+  name
+}
+
+class hp_condition {
+  exation_id
+  value
+}
+
+class action {
+  hp_condition_id
+  search_id
+  target_value
+  motion_id
+  rate_id
+  rate_coefficient
+  cancel_type_id
+  action_chain_id
+}
+
+project "1" <-up- "N" exaction
+project "1" <-up- "N" cancel_condition
+exaction "1" <-up- "N" hp_condition
+hp_condition "1" <-up- "N" action
+rate "N" <-up- "N" action
+action_chain "N" <- "N" action
+
+@enduml
