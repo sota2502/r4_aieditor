@@ -1,0 +1,24 @@
+<% action_rule = ActionRule.new %>
+
+<%= form_with(model: [project, action_chain, action_rule], local: true) do |form| %>
+  <%= form.hidden_field :action_chain_id, value: action_chain.id %>
+  <tr>
+    <td>#</td>
+    <td><%= form.collection_select(:motion_id, Motion.all, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
+    <td><%= form.collection_select(:next, NextActTiming.all, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
+    <td>
+      <%= form.collection_select(:search_id, project.action_state.searches, :id, :name, {prompt: false}, {class: 'form-control'}) %>
+    </td>
+    <td>
+      <%= form.collection_select(:target_value, TargetType.all, :id, :caption, {prompt: false}, {class: 'form-control'}) %>
+    </td>
+    <td><%= form.number_field :hold, class: 'form-control' %></td>
+    <td class="form-group">
+      <%= form.number_field :move_x, class: 'form-control' %>
+    </td>
+    <td>
+      <%= form.number_field :move_y, class: 'form-control' %>
+    </td>
+    <td><%= form.submit "送信", class: 'btn btn-primary' %></td>
+  </tr>
+<% end %>

@@ -1,14 +1,16 @@
+<h1><%= project.name %> / 行動リスト / 設定</h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Project:</strong>
-  <%= @action_chain.project_id %>
-</p>
+<h2>属性</h2>
+<dl class="dl-horizontal">
+  <dt>Name</dt>
+  <dd><%= @action_chain.name %></dd>
+</dl>
 
-<p>
-  <strong>Name:</strong>
-  <%= @action_chain.name %>
-</p>
+<h2>行動リスト選択</h2>
 
-<%= link_to 'Edit', edit_action_chain_path(@action_chain) %> |
-<%= link_to 'Back', action_chains_path %>
+<%= render 'rule_table', action_chain: @action_chain, action_rules: @action_chain.action_rules %>
+
+<%= link_to 'Edit', edit_project_action_chain_path(project, @action_chain) %> |
+<%= link_to 'Back', project_path(project) %>

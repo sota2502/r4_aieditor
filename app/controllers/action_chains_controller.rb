@@ -29,7 +29,7 @@ class ActionChainsController < ApplicationController
 
     respond_to do |format|
       if @action_chain.save
-        format.html { redirect_to @action_chain, notice: 'Action chain was successfully created.' }
+        format.html { redirect_to [project, @action_chain], notice: 'Action chain was successfully created.' }
         format.json { render :show, status: :created, location: @action_chain }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ActionChainsController < ApplicationController
   def update
     respond_to do |format|
       if @action_chain.update(action_chain_params)
-        format.html { redirect_to @action_chain, notice: 'Action chain was successfully updated.' }
+        format.html { redirect_to [project, @action_chain], notice: 'Action chain was successfully updated.' }
         format.json { render :show, status: :ok, location: @action_chain }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class ActionChainsController < ApplicationController
   def destroy
     @action_chain.destroy
     respond_to do |format|
-      format.html { redirect_to action_chains_url, notice: 'Action chain was successfully destroyed.' }
+      format.html { redirect_to project, notice: 'Action chain was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

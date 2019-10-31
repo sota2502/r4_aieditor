@@ -2,5 +2,4 @@
 
 <%= render 'form', action_chain: @action_chain %>
 
-<%= link_to 'Show', @action_chain %> |
-<%= link_to 'Back', action_chains_path %>
+<%= link_to 'Back', [project, @action_chain] %>

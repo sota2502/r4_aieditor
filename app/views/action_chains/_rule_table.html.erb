@@ -1,0 +1,35 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>行動種別/モーション</th>
+      <th>次行動発動タイミング</th>
+      <th>サーチ範囲</th>
+      <th>ターゲット</th>
+      <th>ホールド時間</th>
+      <th colspan="2">移動速度(X, Y)</th>
+      <th>キャンセル条件</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% unless action_rules.empty? %>
+      <% action_rules.each.with_index(1) do |action_rule, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= action_rule.motion.caption %></td>
+          <td><%= action_rule.next_act_timing.caption %></td>
+          <td><%= action_rule.search.name %></td>
+          <td><%= action_rule.target_type.caption %></td>
+          <td><%= action_rule.hold %></td>
+          <td>
+            <%= action_rule.move_x %>
+            <%= action_rule.move_y %>
+          </td>
+          <td></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <%= render 'rule_form', project: project, action_chain: action_chain %>
+  </tbody>
+</table>
