@@ -1,0 +1,31 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>サーチ範囲</th>
+      <th>ターゲット種別</th>
+      <th>ターゲットモーション</th>
+      <th colspan="2">実行確率(変数名 x 係数)</th>
+      <th>前回行動キャンセル種別</th>
+      <th>実行行動リスト名</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% unless actions.empty? %>
+      <% actions.each.with_index(1) do |action, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= action.search.name %></td>
+          <td><%= action.target_type.caption %></td>
+          <td><%= action.motionable.caption %></td>
+          <td><%= action.rate.name %></td>
+          <td><%= action.rate_coefficient %></td>
+          <td></td>
+          <td><%= action.action_chain.name %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <%= render 'action_form' %>
+  </tbody>
+</table>

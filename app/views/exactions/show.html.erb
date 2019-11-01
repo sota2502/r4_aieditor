@@ -1,14 +1,44 @@
+<h1> <%= project.name %> / <%= @exaction.name %></h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Project:</strong>
-  <%= @exaction.project_id %>
-</p>
+<h2>HP条件</h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @exaction.name %>
-</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>条件</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @exaction.hp_conditions.each.with_index(1) do |hp_condition, i| %>
+      <tr>
+        <td><%= i %></td>
+        <td>
+          <%= hp_condition.value %>%以下
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_project_exaction_hpcondition_path(project, @exaction, hp_condition) %>
+        </td>
+        <td><%= link_to 'Destroy', hp_condition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+<table>
 
-<%= link_to 'Edit', edit_exaction_path(@exaction) %> |
-<%= link_to 'Back', exactions_path %>
+<ul>
+  <% @exaction.hp_conditions.each do |hp_condition| %>
+    <li>
+      <%= hp_condition.value %>%以下
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to '追加', new_project_exaction_hp_condition_path(project, @exaction) %>
+
+<br>
+
+<%= link_to 'Edit', edit_project_exaction_path(project, @exaction) %> |
+<%= link_to 'Back', project %>

@@ -1,4 +1,7 @@
 class HpConditionsController < ApplicationController
+  include Projectable
+  include Exactionable
+
   before_action :set_hp_condition, only: [:show, :edit, :update, :destroy]
 
   # GET /hp_conditions
@@ -28,7 +31,7 @@ class HpConditionsController < ApplicationController
 
     respond_to do |format|
       if @hp_condition.save
-        format.html { redirect_to @hp_condition, notice: 'Hp condition was successfully created.' }
+        format.html { redirect_to [project, exaction, @hp_condition], notice: 'Hp condition was successfully created.' }
         format.json { render :show, status: :created, location: @hp_condition }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class HpConditionsController < ApplicationController
   def update
     respond_to do |format|
       if @hp_condition.update(hp_condition_params)
-        format.html { redirect_to @hp_condition, notice: 'Hp condition was successfully updated.' }
+        format.html { redirect_to [project, exaction, @hp_condition], notice: 'Hp condition was successfully updated.' }
         format.json { render :show, status: :ok, location: @hp_condition }
       else
         format.html { render :edit }
@@ -56,7 +59,7 @@ class HpConditionsController < ApplicationController
   def destroy
     @hp_condition.destroy
     respond_to do |format|
-      format.html { redirect_to hp_conditions_url, notice: 'Hp condition was successfully destroyed.' }
+      format.html { redirect_to [project, exaction], notice: 'Hp condition was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -11,13 +11,15 @@
     <% end %>
   </li>
   <li>
-    <% if @project.action_chain.present? %>
-      <%= link_to 'ActionChain', project_action_chain_path(@project, @project.action_chain) %>
+    <%= link_to 'ActionChain', project_action_chains_path(@project) %>
+  </li>
+  <li>
+    <% if @project.exaction.present? %>
+      <%= link_to 'Exaction', project_exaction_path(@project, @project.exaction) %>
     <% else %>
-      <%= link_to 'ActionChain', new_project_action_chain_path(@project) %>
+      <%= link_to 'Exaction', new_project_exaction_path(@project) %>
     <% end %>
   </li>
-  <li><%= link_to 'Exaction', project_exactions_path(@project) %></li>
 </ul>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

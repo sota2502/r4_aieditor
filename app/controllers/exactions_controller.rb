@@ -1,4 +1,5 @@
 class ExactionsController < ApplicationController
+  include Projectable
   before_action :set_exaction, only: [:show, :edit, :update, :destroy]
 
   # GET /exactions
@@ -28,7 +29,7 @@ class ExactionsController < ApplicationController
 
     respond_to do |format|
       if @exaction.save
-        format.html { redirect_to @exaction, notice: 'Exaction was successfully created.' }
+        format.html { redirect_to [project, @exaction], notice: 'Exaction was successfully created.' }
         format.json { render :show, status: :created, location: @exaction }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class ExactionsController < ApplicationController
   def update
     respond_to do |format|
       if @exaction.update(exaction_params)
-        format.html { redirect_to @exaction, notice: 'Exaction was successfully updated.' }
+        format.html { redirect_to [project, @exaction], notice: 'Exaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @exaction }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class ExactionsController < ApplicationController
   def destroy
     @exaction.destroy
     respond_to do |format|
-      format.html { redirect_to exactions_url, notice: 'Exaction was successfully destroyed.' }
+      format.html { redirect_to project, notice: 'Exaction was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

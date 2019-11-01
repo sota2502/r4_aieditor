@@ -7,7 +7,8 @@
       <th>サーチ範囲</th>
       <th>ターゲット</th>
       <th>ホールド時間</th>
-      <th colspan="2">移動速度(X, Y)</th>
+      <th>移動速度X</th>
+      <th>移動速度Y</th>
       <th>キャンセル条件</th>
     </tr>
   </thead>
@@ -22,11 +23,10 @@
           <td><%= action_rule.search.name %></td>
           <td><%= action_rule.target_type.caption %></td>
           <td><%= action_rule.hold %></td>
-          <td>
-            <%= action_rule.move_x %>
-            <%= action_rule.move_y %>
+          <td><%= action_rule.move_x %></td>
+          <td><%= action_rule.move_y %></td>
           </td>
-          <td></td>
+          <td> ... </td>
         </tr>
       <% end %>
     <% end %>

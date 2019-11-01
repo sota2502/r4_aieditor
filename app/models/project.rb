@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
   has_one :action_state
-  has_one :action_chain
+  has_many :action_chains
   has_one :exaction
 end

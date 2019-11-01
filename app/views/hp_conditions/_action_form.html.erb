@@ -1,0 +1,21 @@
+<% action = Action.new %>
+
+<%= form_with(model: [project, exaction, hp_condition, action], local: true) do |form| %>
+  <%= form.hidden_field :hp_condition_id, value: hp_condition.id %>
+  <tr>
+    <td>#</td>
+    <td>
+      <%= form.collection_select(:search_id, project.action_state.searches, :id, :name, {prompt: false}, {class: 'form-control'}) %>
+    </td>
+    <td>
+      <%= form.collection_select(:target_value, TargetType.all, :id, :caption, {prompt: false}, {class: 'form-control'}) %>
+    </td>
+    <td><%= form.collection_select(:motion_id, project.rates.all, :id, :name, {prompt: false}, {class: 'form-control'}) %></td>
+    <td><%= form.number_field :rate_coefficient %></td>
+    <td><%= form.number_field :cancel_type, class: 'form-control' %></td>
+    <td>
+      <%= form.collection_select(:motion_id, project.rates.all, :id, :name, {prompt: false}, {class: 'form-control'}) %>
+    </td>
+    <td><%= form.submit "送信", class: 'btn btn-primary' %></td>
+  </tr>
+<% end %>
