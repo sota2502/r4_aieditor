@@ -13,7 +13,9 @@ class CancelType
     10 => { name: :target_damage, caption: 'ターゲットダメージ' },
     11 => { name: :target_guard_break, caption: 'ターゲットガードブレイク' },
     12 => { name: :target_flip, caption: 'ターゲット弾かれ' },
-    13 => { name: :target_faint, caption: 'ターゲットピヨリ' }
+    13 => { name: :target_faint, caption: 'ターゲットピヨリ' },
+    14 => { name: :target_find, caption: 'ターゲット検知' },
+    15 => { name: :target_not_find, caption: 'ターゲット非検知' }
   }
 
   attr_reader :id, :caption
