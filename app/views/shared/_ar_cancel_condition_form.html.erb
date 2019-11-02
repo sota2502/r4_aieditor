@@ -1,0 +1,16 @@
+<%= form_with(url: project_action_chain_action_rule_action_rule_cancel_conditions_path(project, action_chain, @action_rule, cancel_condition), method: :post, local: true) do |form| %>
+
+  <%= form.hidden_field :project_id, value: project.id %>
+  <%= form.hidden_field :action_chain_id, value: action_chain.id %>
+  <%= form.hidden_field :action_rule_id, value: @action_rule.id %>
+
+  <tr>
+    <td>#</td>
+    <td><%= form.collection_select(:cancel_type_id, CancelType.all, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
+    <td><%= form.collection_select(:rate_id, project.action_state.rates.all, :id, :name, {prompt: false}, {class: 'form-control'}) %></td>
+    <td><%= form.number_field :rate_coefficient, class: 'form-control' %></td>
+    <td><%= form.number_field :parameter1, class: 'form-control' %></td>
+    <td><%= form.number_field :parameter2, class: 'form-control' %></td>
+    <td><%= form.submit "送信", class: 'btn btn-primary' %></td>
+  </tr>
+<% end %>

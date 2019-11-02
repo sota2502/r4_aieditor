@@ -21,7 +21,13 @@
           <td><%= cancel_condition.rate_coefficient %></td>
           <td><%= cancel_condition.parameter1 %></td>
           <td><%= cancel_condition.parameter2 %></td>
-          <td><%= link_to '削除', project_action_chain_action_chain_cancel_condition_path(project, action_chain, cancel_condition), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+              <% if parent == 'action_chain' %>
+                <%= link_to '削除', project_action_chain_action_chain_cancel_condition_path(project, action_chain, cancel_condition), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% else %>
+                <%= link_to '削除', project_action_chain_action_rule_action_rule_cancel_condition_path(project, action_chain, @action_rule, cancel_condition), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+          </td>
         </tr>
       <% end %>
     <% end %>

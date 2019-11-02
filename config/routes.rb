@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :cancel_conditions
 
     resources :action_chains do
-      resources :action_rules
+      resources :action_rules do
+        resources :action_rule_cancel_conditions
+      end
       resources :action_chain_cancel_conditions
     end
 

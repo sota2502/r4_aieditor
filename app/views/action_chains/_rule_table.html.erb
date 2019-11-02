@@ -25,8 +25,7 @@
           <td><%= action_rule.hold %></td>
           <td><%= action_rule.move_x %></td>
           <td><%= action_rule.move_y %></td>
-          </td>
-          <td> ... </td>
+          <td><%= link_to '...', project_action_chain_action_rule_action_rule_cancel_conditions_path(project, @action_chain, action_rule) %> </td>
         </tr>
       <% end %>
     <% end %>
