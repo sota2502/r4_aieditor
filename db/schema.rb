@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2019_10_27_141631) do
     t.integer "motion_id"
     t.bigint "rate_id"
     t.integer "rate_coefficient", unsigned: true
-    t.integer "cancel_type"
+    t.integer "cancel_type_id", null: false
     t.bigint "action_chain_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2019_10_27_141631) do
 
   create_table "cancel_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "project_id", null: false
-    t.integer "cancel_type", null: false
+    t.integer "cancel_type_id", null: false
     t.bigint "rate_id"
     t.integer "rate_coefficient", unsigned: true
     t.integer "parameter1"

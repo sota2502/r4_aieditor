@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     resources :action_chains do
       resources :action_rules
+      resources :action_chain_cancel_conditions
     end
 
     resources :exactions do

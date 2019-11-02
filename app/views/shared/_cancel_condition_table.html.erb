@@ -1,0 +1,31 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>キャンセル条件種別</th>
+      <th>実行確率</th>
+      <th>係数</th>
+      <th>パラメタ1</th>
+      <th>パラメタ2</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% unless cancel_conditons.empty? %>
+      <% cancel_conditons.each.with_index(1) do |cancel_condition, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= cancel_condition.cancel_type.caption %></td>
+          <td><%= cancel_condition.rate.name %></td>
+          <td><%= cancel_condition.rate_coefficient %></td>
+          <td><%= cancel_condition.parameter1 %></td>
+          <td><%= cancel_condition.parameter2 %></td>
+          <td><%= link_to '削除', project_action_chain_action_chain_cancel_condition_path(project, action_chain, cancel_condition), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    <%= render form_name, cancel_condition: CancelCondition.new %>
+  </tbody>
+</table>

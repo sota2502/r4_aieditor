@@ -1,0 +1,6 @@
+<h1><%= project.name %> / <%= action_chain.name %> / デフォルトキャンセル条件</h1>
+
+<%= render 'shared/cancel_condition_table',
+    cancel_conditons: @cancel_conditions, form_name: 'shared/ac_cancel_condition_form' %>
+
+<%= link_to '戻る', [project, action_chain], class: 'btn btn-primary' %>

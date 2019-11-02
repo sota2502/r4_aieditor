@@ -17,28 +17,22 @@
       <tr>
         <td><%= i %></td>
         <td>
-          <%= hp_condition.value %>%以下
+          <%= link_to "#{hp_condition.value}%以下", project_exaction_hp_condition_path(project, @exaction, hp_condition) %>
         </td>
         <td>
-          <%= link_to 'Edit', edit_project_exaction_hpcondition_path(project, @exaction, hp_condition) %>
+          <%= link_to '編集', edit_project_exaction_hp_condition_path(project, @exaction, hp_condition) %>
         </td>
-        <td><%= link_to 'Destroy', hp_condition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '削除', [project, @exaction, hp_condition], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 <table>
 
-<ul>
-  <% @exaction.hp_conditions.each do |hp_condition| %>
-    <li>
-      <%= hp_condition.value %>%以下
-    </li>
-  <% end %>
-</ul>
+<div class="form-group">
+<%= link_to '追加', new_project_exaction_hp_condition_path(project, @exaction), class: 'btn btn-primary' %>
+</div>
 
-<%= link_to '追加', new_project_exaction_hp_condition_path(project, @exaction) %>
-
-<br>
-
-<%= link_to 'Edit', edit_project_exaction_path(project, @exaction) %> |
-<%= link_to 'Back', project %>
+<div class="form-group">
+<%= link_to '編集', edit_project_exaction_path(project, @exaction), class: 'btn btn-primary' %>
+<%= link_to '戻る', project, class: 'btn btn-primary' %>
+</div>

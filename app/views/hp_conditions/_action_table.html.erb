@@ -8,6 +8,7 @@
       <th colspan="2">実行確率(変数名 x 係数)</th>
       <th>前回行動キャンセル種別</th>
       <th>実行行動リスト名</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -23,6 +24,7 @@
           <td><%= action.rate_coefficient %></td>
           <td></td>
           <td><%= action.action_chain.name %></td>
+          <td><%= link_to '削除', [project, exaction, action], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     <% end %>
