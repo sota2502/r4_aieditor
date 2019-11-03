@@ -9,4 +9,26 @@ class ActionRule < ApplicationRecord
   def target_type
     TargetType.new(target_value)
   end
+
+  def for_lua
+    {
+      motion: motion.caption,
+      move: move_for_lua,
+      next: self.next,
+      search: search.name,
+      target: target_value,
+      hold: hold,
+      cancel: cancel_conditions.map(&:for_lua)
+    }
+  end
+
+  private
+
+    def move_for_lua
+      if move_x.present? && move_y.present?
+        [move_x, move_y]
+      else
+        nil
+      end
+    end
 end

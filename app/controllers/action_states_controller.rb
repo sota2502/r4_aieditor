@@ -18,7 +18,6 @@ class ActionStatesController < ApplicationController
         name = @action_state.chara + '.lua'
         send_data(data, filename: name)
       end
-      # format.text { render plain: ENV }
     end
   end
 

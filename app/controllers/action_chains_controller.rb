@@ -11,6 +11,14 @@ class ActionChainsController < ApplicationController
   # GET /action_chains/1
   # GET /action_chains/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.text do
+        data = LuaScript::Dumper.dump_with_func('actionchain', @action_chain.for_lua)
+        name = @action_chain.name + '.lua'
+        send_data(data, filename: name)
+      end
+    end
   end
 
   # GET /action_chains/new
