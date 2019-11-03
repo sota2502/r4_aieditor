@@ -10,6 +10,14 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.text do
+        data = @project.to_lua
+        name = @project.name + '.lua'
+        send_data(data, filename: name)
+      end
+    end
   end
 
   # GET /projects/new
