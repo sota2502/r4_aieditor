@@ -1,0 +1,57 @@
+<%= form_with(model: action_routine, local: true) do |form| %>
+  <% if action_routine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(action_routine.errors.count, "error") %> prohibited this action_routine from being saved:</h2>
+
+      <ul>
+        <% action_routine.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :hp_condition_id %>
+    <%= form.text_field :hp_condition_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :search_id %>
+    <%= form.text_field :search_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :target_value %>
+    <%= form.number_field :target_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :motion_id %>
+    <%= form.number_field :motion_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate_id %>
+    <%= form.text_field :rate_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate_coefficient %>
+    <%= form.text_field :rate_coefficient %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cancel_type_id %>
+    <%= form.number_field :cancel_type_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :action_chain_id %>
+    <%= form.text_field :action_chain_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

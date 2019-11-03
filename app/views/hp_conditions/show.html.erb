@@ -4,7 +4,7 @@
 
 <h2>ターゲット行動条件</h2>
 
-<%= render 'action_table', actions: @hp_condition.actions %>
+<%= render 'action_table', action_routines: @hp_condition.action_routines %>
 
 <%= link_to '編集', edit_project_exaction_hp_condition_path(project, exaction, @hp_condition), class: 'btn btn-primary' %>
 <%= link_to '戻る', [project, exaction], class: 'btn btn-primary' %>

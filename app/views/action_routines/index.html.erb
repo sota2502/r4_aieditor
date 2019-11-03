@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Action Routines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hp condition</th>
+      <th>Search</th>
+      <th>Target value</th>
+      <th>Motion</th>
+      <th>Rate</th>
+      <th>Rate coefficient</th>
+      <th>Cancel type</th>
+      <th>Action chain</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @action_routines.each do |action_routine| %>
+      <tr>
+        <td><%= action_routine.hp_condition_id %></td>
+        <td><%= action_routine.search_id %></td>
+        <td><%= action_routine.target_value %></td>
+        <td><%= action_routine.motion_id %></td>
+        <td><%= action_routine.rate_id %></td>
+        <td><%= action_routine.rate_coefficient %></td>
+        <td><%= action_routine.cancel_type_id %></td>
+        <td><%= action_routine.action_chain_id %></td>
+        <td><%= link_to 'Show', action_routine %></td>
+        <td><%= link_to 'Edit', edit_action_routine_path(action_routine) %></td>
+        <td><%= link_to 'Destroy', action_routine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Action Routine', new_action_routine_path %>

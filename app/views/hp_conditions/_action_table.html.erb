@@ -13,18 +13,18 @@
   </thead>
 
   <tbody>
-    <% unless actions.empty? %>
-      <% actions.each.with_index(1) do |action, i| %>
+    <% unless action_routines.empty? %>
+      <% action_routines.each.with_index(1) do |action_routine, i| %>
         <tr>
           <td><%= i %></td>
-          <td><%= action.search.name %></td>
-          <td><%= action.target_type.caption %></td>
-          <td><%= action.motionable.caption %></td>
-          <td><%= action.rate.name %></td>
-          <td><%= action.rate_coefficient %></td>
-          <td></td>
-          <td><%= action.action_chain.name %></td>
-          <td><%= link_to '削除', [project, exaction, action], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= action_routine.search.name %></td>
+          <td><%= action_routine.target_type.caption %></td>
+          <td><%= action_routine.motion.caption %></td>
+          <td><%= action_routine.rate.name %></td>
+          <td><%= action_routine.rate_coefficient %></td>
+          <td><%= action_routine.cancel_type.caption %></td>
+          <td><%= action_routine.action_chain.name %></td>
+          <td><%= link_to '削除', [project, exaction, @hp_condition, action_routine], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     <% end %>

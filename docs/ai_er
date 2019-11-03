@@ -93,7 +93,7 @@ class hp_condition {
   value
 }
 
-class action {
+class action_routine {
   hp_condition_id
   search_id
   target_value
@@ -107,8 +107,8 @@ class action {
 project "1" <-up- "N" exaction
 project "1" <-up- "N" cancel_condition
 exaction "1" <-up- "N" hp_condition
-hp_condition "1" <-up- "N" action
-rate "N" <-up- "N" action
-action_chain "N" <- "N" action
+hp_condition "1" <-up- "N" action_routine
+rate "N" <-up- "N" action_routine
+action_chain "N" <- "N" action_routine
 
 @enduml

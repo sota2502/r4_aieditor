@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_27_141631) do
+ActiveRecord::Schema.define(version: 2019_11_03_065442) do
 
   create_table "action_chain_cancels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "action_chain_id", null: false
@@ -29,13 +29,30 @@ ActiveRecord::Schema.define(version: 2019_10_27_141631) do
     t.index ["project_id"], name: "index_action_chains_on_project_id"
   end
 
-  create_table "action_rule_cancels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "action_routines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "hp_condition_id", null: false
+    t.bigint "search_id", null: false
+    t.integer "target_value"
+    t.integer "motion_id"
+    t.bigint "rate_id", null: false
+    t.integer "rate_coefficient", unsigned: true
+    t.integer "cancel_type_id"
     t.bigint "action_chain_id", null: false
-    t.bigint "action_rule_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["action_chain_id"], name: "index_action_rule_cancels_on_action_chain_id"
+    t.index ["action_chain_id"], name: "index_action_routines_on_action_chain_id"
+    t.index ["hp_condition_id"], name: "index_action_routines_on_hp_condition_id"
+    t.index ["rate_id"], name: "index_action_routines_on_rate_id"
+    t.index ["search_id"], name: "index_action_routines_on_search_id"
+  end
+
+  create_table "action_rule_cancels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "action_rule_id", null: false
+    t.bigint "cancel_condition_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["action_rule_id"], name: "index_action_rule_cancels_on_action_rule_id"
+    t.index ["cancel_condition_id"], name: "index_action_rule_cancels_on_cancel_condition_id"
   end
 
   create_table "action_rules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -148,8 +165,12 @@ ActiveRecord::Schema.define(version: 2019_10_27_141631) do
   add_foreign_key "action_chain_cancels", "action_chains"
   add_foreign_key "action_chain_cancels", "cancel_conditions"
   add_foreign_key "action_chains", "projects"
-  add_foreign_key "action_rule_cancels", "action_chains"
+  add_foreign_key "action_routines", "action_chains"
+  add_foreign_key "action_routines", "hp_conditions"
+  add_foreign_key "action_routines", "rates"
+  add_foreign_key "action_routines", "searches"
   add_foreign_key "action_rule_cancels", "action_rules"
+  add_foreign_key "action_rule_cancels", "cancel_conditions"
   add_foreign_key "action_rules", "action_chains"
   add_foreign_key "action_rules", "searches"
   add_foreign_key "action_states", "projects"

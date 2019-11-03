@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hp condition:</strong>
+  <%= @action_routine.hp_condition_id %>
+</p>
+
+<p>
+  <strong>Search:</strong>
+  <%= @action_routine.search_id %>
+</p>
+
+<p>
+  <strong>Target value:</strong>
+  <%= @action_routine.target_value %>
+</p>
+
+<p>
+  <strong>Motion:</strong>
+  <%= @action_routine.motion_id %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @action_routine.rate_id %>
+</p>
+
+<p>
+  <strong>Rate coefficient:</strong>
+  <%= @action_routine.rate_coefficient %>
+</p>
+
+<p>
+  <strong>Cancel type:</strong>
+  <%= @action_routine.cancel_type_id %>
+</p>
+
+<p>
+  <strong>Action chain:</strong>
+  <%= @action_routine.action_chain_id %>
+</p>
+
+<%= link_to 'Edit', edit_action_routine_path(@action_routine) %> |
+<%= link_to 'Back', action_routines_path %>

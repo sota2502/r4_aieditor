@@ -1,7 +1,7 @@
-class Action < ApplicationRecord
+class ActionRoutine < ApplicationRecord
   include Motionable
   include CancelTypable
-  belongs_to :hp_conditon
+  belongs_to :hp_condition
   belongs_to :search
   belongs_to :rate
   belongs_to :action_chain

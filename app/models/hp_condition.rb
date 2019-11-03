@@ -1,4 +1,4 @@
 class HpCondition < ApplicationRecord
   belongs_to :exaction
-  has_many :actions
+  has_many :action_routines
 end

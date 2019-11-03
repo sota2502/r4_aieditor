@@ -1,6 +1,6 @@
-<% action = Action.new %>
+<% action_routine = ActionRoutine.new %>
 
-<%= form_with(model: [project, exaction, @hp_condition, action], local: true) do |form| %>
+<%= form_with(model: [project, exaction, @hp_condition, action_routine], local: true) do |form| %>
   <%= form.hidden_field :hp_condition_id, value: @hp_condition.id %>
   <tr>
     <td>#</td>
@@ -13,8 +13,9 @@
     <td><%= form.collection_select(:motion_id, Motion.all, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
     <td><%= form.collection_select(:rate_id, project.action_state.rates.all, :id, :name, {prompt: false}, {class: 'form-control'}) %></td>
     <td><%= form.number_field :rate_coefficient, class: 'form-control' %></td>
-    <td><%= form.number_field :cancel_type, class: 'form-control' %></td>
+    <td><%= form.collection_select(:cancel_type_id, CancelType.all, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
     <td>
+      <%= form.collection_select(:action_chain_id, project.action_chains, :id, :name, {prompt: false}, {class: 'form-control'}) %>
     </td>
     <td><%= form.submit "送信", class: 'btn btn-primary' %></td>
   </tr>
