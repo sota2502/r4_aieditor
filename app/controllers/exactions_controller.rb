@@ -11,6 +11,14 @@ class ExactionsController < ApplicationController
   # GET /exactions/1
   # GET /exactions/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.text do
+        data = LuaScript::Dumper.dump_with_func('exaction', @exaction.for_lua)
+        name = @exaction.name + '.lua'
+        send_data(data, filename: name)
+      end
+    end
   end
 
   # GET /exactions/new
