@@ -11,6 +11,15 @@ class ActionStatesController < ApplicationController
   # GET /action_states/1
   # GET /action_states/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.text do
+        data = LuaScript::Dumper.dump_with_func('actionstate', @action_state.for_lua)
+        name = @action_state.chara + '.lua'
+        send_data(data, filename: name)
+      end
+      # format.text { render plain: ENV }
+    end
   end
 
   # GET /action_states/new
