@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass'
 gem 'sassc-rails'
 
+gem 'activerecord-import'
+
 gem 'config'
 
 gem 'rlua'

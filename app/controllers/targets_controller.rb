@@ -14,13 +14,11 @@ class TargetsController < ApplicationController
   # POST /targets
   # POST /targets.json
   def create
-    @target = Target.new(target_params)
+    TargetsForm.new(target_params).save
 
     respond_to do |format|
-      if @target.save
-        format.html { redirect_to after_write_path }
-        format.json { render :show, status: :created, location: @target }
-      end
+      format.html { redirect_to after_write_path, notice: 'Targets were successfully created.' }
+      format.json { render :show, status: :created, location: @target }
     end
   end
 
@@ -53,7 +51,7 @@ class TargetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def target_params
-      params.require(:target).permit(:action_state_id, :value)
+      params.permit(:project_id, :action_state_id, target: {targets: [:id, :value]})
     end
 
     def after_write_path
