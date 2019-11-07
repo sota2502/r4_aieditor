@@ -7,20 +7,18 @@ class RatesController < ApplicationController
   # GET /rates
   # GET /rates.json
   def index
-    @rates = Rate.all
+    @rates = action_state.rates
     @rate = Rate.new
   end
 
   # POST /rates
   # POST /rates.json
   def create
-    @rate = Rate.new(rate_params)
+    RatesForm.new(rate_params).save
 
     respond_to do |format|
-      if @rate.save
-        format.html { redirect_to project_action_state_rates_path(project, action_state) }
-        format.json { render :show, status: :created, location: @rate }
-      end
+      format.html { redirect_to project_action_state_rates_path(project, action_state) }
+      format.json { render :show, status: :created, location: @rate }
     end
   end
 
@@ -53,6 +51,11 @@ class RatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rate_params
-      params.require(:rate).permit(:action_state_id, :name, :value)
+      params.permit(:project_id,
+                    :action_state_id,
+                    rate: {
+                      rates: [:id, :name, :value],
+                      new_rates: [:name, :value],
+                    })
     end
 end
