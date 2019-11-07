@@ -2,34 +2,57 @@
 
 <h1>Searches</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>X1</th>
-      <th>Y1</th>
-      <th>X2</th>
-      <th>Y2</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @searches.each do |search| %>
+<%= form_with(model: [project, action_state, @search], local: true) do |form| %>
+  <%= form.hidden_field :action_state_id, value: action_state.id %>
+  <table class="table table-striped js-form-table">
+    <thead>
       <tr>
-        <td><%= search.name %></td>
-        <td><%= search.x1 %></td>
-        <td><%= search.y1 %></td>
-        <td><%= search.x2 %></td>
-        <td><%= search.y2 %></td>
-        <td><%= link_to 'Edit', '' %></td>
-        <td><%= link_to 'Destroy', [project, action_state, search], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>#</th>
+        <th>Name</th>
+        <th>X1</th>
+        <th>Y1</th>
+        <th>X2</th>
+        <th>Y2</th>
+        <th></th>
       </tr>
-    <% end %>
-    <%= render 'form', search: @search %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @searches.each.with_index(1) do |search, i| %>
+        <%= form.fields_for "searches[]", search do |f| %>
+          <%= f.hidden_field :id, value: search.id %>
+          <tr class="js-form-item">
+            <td><%= i %></td>
+            <td><%= f.text_field :name, class: 'form-control' %></td>
+            <td><%= f.number_field :x1, class: 'form-control' %></td>
+            <td><%= f.number_field :y1, class: 'form-control' %></td>
+            <td><%= f.number_field :x2, class: 'form-control' %></td>
+            <td><%= f.number_field :y2, class: 'form-control' %></td>
+            <td><%= link_to '削除', [project, action_state, search], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
 
-<%= link_to '戻る', [project, action_state], class: 'btn btn-primary' %>
+      <%= form.fields_for "new_searches[]", @search do |f| %>
+        <tr class="js-new-form-item">
+          <td>#</td>
+          <td><%= f.text_field :name, class: 'form-control' %></td>
+          <td><%= f.number_field :x1, class: 'form-control' %></td>
+          <td><%= f.number_field :y1, class: 'form-control' %></td>
+          <td><%= f.number_field :x2, class: 'form-control' %></td>
+          <td><%= f.number_field :y2, class: 'form-control' %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-group">
+    <button class="btn btn-primary js-new-trigger">追加</button>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit '保存', class: 'btn btn-primary' %>
+    <%= link_to '戻る', [project, action_state], class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -8,19 +8,17 @@ class SearchesController < ApplicationController
   # GET /searches.json
   def index
     @search = Search.new
-    @searches = Search.all
+    @searches = action_state.searches
   end
 
   # POST /searches
   # POST /searches.json
   def create
-    @search = Search.new(search_params)
+    SearchesForm.new(search_params).save
 
     respond_to do |format|
-      if @search.save
-        format.html { redirect_to after_write_path }
-        format.json { render :show, status: :created, location: @search }
-      end
+      format.html { redirect_to after_write_path }
+      format.json { render :show, status: :created, location: @search }
     end
   end
 
@@ -53,7 +51,12 @@ class SearchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
-      params.require(:search).permit(:action_state_id, :name, :x1, :y1, :x2, :y2)
+      params.permit(:project_id,
+                    :action_state_id,
+                    search: {
+                      searches: [:id, :name, :x1, :y1, :x2, :y2],
+                      new_searches: [:name, :x1, :y1, :x2, :y2],
+                    })
     end
 
     def after_write_path
