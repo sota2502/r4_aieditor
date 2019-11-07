@@ -7,7 +7,8 @@ class ActionRulesController < ApplicationController
   # GET /action_rules
   # GET /action_rules.json
   def index
-    @action_rules = ActionRule.all
+    @action_rule = ActionRule.new
+    @action_rules = action_chain.action_rules
   end
 
   # GET /action_rules/1
@@ -27,16 +28,11 @@ class ActionRulesController < ApplicationController
   # POST /action_rules
   # POST /action_rules.json
   def create
-    @action_rule = ActionRule.new(action_rule_params)
+    ActionRulesForm.new(action_rule_params).save
 
     respond_to do |format|
-      if @action_rule.save
-        format.html { redirect_to [project, action_chain], notice: 'Action rule was successfully created.' }
-        format.json { render :show, status: :created, location: @action_rule }
-      else
-        format.html { render :new }
-        format.json { render json: @action_rule.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to [project, action_chain], notice: 'Action rule was successfully created.' }
+      format.json { render :show, status: :created, location: @action_rule }
     end
   end
 
@@ -72,6 +68,11 @@ class ActionRulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def action_rule_params
-      params.require(:action_rule).permit(:action_chain_id, :motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold)
+      params.permit(:project_id,
+                    :action_chain_id,
+                    action_rule: {
+                      action_rules: [:id, :motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold],
+                      new_action_rules: [:motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold]
+                    })
     end
 end

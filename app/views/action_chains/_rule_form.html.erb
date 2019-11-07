@@ -1,5 +1,3 @@
-<% action_rule = ActionRule.new %>
-
 <%= form_with(model: [project, action_chain, action_rule], local: true) do |form| %>
   <%= form.hidden_field :action_chain_id, value: action_chain.id %>
   <tr>

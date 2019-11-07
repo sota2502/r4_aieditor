@@ -6,6 +6,13 @@ class ActionRule < ApplicationRecord
   has_many :action_rule_cancels
   has_many :cancel_conditions, through: :action_rule_cancels
 
+  validates :motion_id, presence: true, inclusion: { in: Motion::DEFINITION.keys }
+  validates :move_x, numericality: { only_integer: true }
+  validates :move_y, numericality: { only_integer: true }
+  validates :next, presence: true, inclusion: { in: NextActTiming::DEFINITION.keys }
+  validates :target_value, presence: true, inclusion: { in: TargetType::DEFINITION.keys }
+  validates :hold, presence: true, numericality: { only_integer: true }
+
   def target_type
     TargetType.new(target_value)
   end

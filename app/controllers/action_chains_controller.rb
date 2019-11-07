@@ -5,12 +5,13 @@ class ActionChainsController < ApplicationController
   # GET /action_chains
   # GET /action_chains.json
   def index
-    @action_chains = ActionChain.all
+    @action_chains = project.action_chains
   end
 
   # GET /action_chains/1
   # GET /action_chains/1.json
   def show
+    @action_rule = ActionRule.new
     respond_to do |format|
       format.html { render :show }
       format.text do

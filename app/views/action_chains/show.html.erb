@@ -4,7 +4,10 @@
 
 <h2>行動リスト選択</h2>
 
-<%= render 'rule_table', action_chain: @action_chain, action_rules: @action_chain.action_rules %>
+<%= render 'rule_table', project: project,
+                         action_chain: @action_chain,
+                         action_rules: @action_chain.action_rules,
+                         action_rule: @action_rule %>
 
 <div class="form-group">
 <%= link_to 'デフォルトキャンセル条件', project_action_chain_action_chain_cancel_conditions_path(project, @action_chain), class: 'btn btn-primary' %>
