@@ -25,5 +25,9 @@ class TargetType
     def all
       ORDER.map { |id| new(id) }
     end
+
+    def valid?(id)
+      DEFINITION.include?(id)
+    end
   end
 end

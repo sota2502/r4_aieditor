@@ -8,7 +8,7 @@ class TargetsController < ApplicationController
   # GET /targets.json
   def index
     @target = Target.new
-    @targets = Target.all
+    @targets = action_state.targets
   end
 
   # POST /targets
@@ -51,7 +51,12 @@ class TargetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def target_params
-      params.permit(:project_id, :action_state_id, target: {targets: [:id, :value]})
+      params.permit(:project_id,
+                    :action_state_id,
+                    target: {
+                      targets: [:id, :value],
+                      new_targets: [:value],
+                    })
     end
 
     def after_write_path
