@@ -1,7 +1,7 @@
 class CancelCondition < ApplicationRecord
   include CancelTypable
   belongs_to :project
-  belongs_to :rate
+  belongs_to :rate, optional: true
 
   def for_lua
     [

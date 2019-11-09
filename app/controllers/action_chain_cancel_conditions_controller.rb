@@ -6,6 +6,7 @@ class ActionChainCancelConditionsController < ApplicationController
 
   def index
     @cancel_conditions = action_chain.cancel_conditions
+    @cancel_condition = CancelCondition.new
   end
 
   def create
@@ -31,19 +32,15 @@ class ActionChainCancelConditionsController < ApplicationController
     end
 
     def cancel_condition_params
-      params.permit(:project_id, :action_chain_id, :cancel_type_id, :rate_id, :rate_coefficient, :parameter1, :parameter2)
+      params.permit(:project_id,
+                    :action_chain_id,
+                    cancel_conditions: [:id, :project_id, :cancel_type_id, :rate_id, :rate_coefficient, :parameter1, :parameter2],
+                    new_cancel_conditions: [:project_id, :cancel_type_id, :rate_id, :rate_coefficient, :parameter1, :parameter2],
+                    )
     end
 
     def create_cancel_condition
-      ApplicationRecord.transaction do
-        cancel_condition = CancelCondition.create!(
-          cancel_condition_params.slice(:project_id, :cancel_type_id, :rate_id, :rate_coefficient, :parameter1, :parameter2)
-        )
-        ac = ActionChainCancel.create!(
-          action_chain_id: params[:action_chain_id],
-          cancel_condition_id: cancel_condition.id
-        )
-      end
+      CancelConditionsForm.new(action_chain, cancel_condition_params).save
     end
   
     def destroy_cancel_condition

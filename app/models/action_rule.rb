@@ -29,6 +29,10 @@ class ActionRule < ApplicationRecord
     }
   end
 
+  def add_cancel_condition(cancel_condition)
+    action_rule_cancels.create!(cancel_condition: cancel_condition)
+  end
+
   private
 
     def move_for_lua

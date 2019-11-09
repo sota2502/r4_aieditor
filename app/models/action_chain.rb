@@ -13,4 +13,8 @@ class ActionChain < ApplicationRecord
 
     obj.merge(rules).merge(cancel: cancels)
   end
+
+  def add_cancel_condition(cancel_condition)
+    action_chain_cancels.create!(cancel_condition: cancel_condition)
+  end
 end

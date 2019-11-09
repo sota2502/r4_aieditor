@@ -1,8 +1,11 @@
 <h1><%= project.name %> / <%= action_chain.name %> / キャンセル条件</h1>
 
 <%= render 'shared/cancel_condition_table',
-    cancel_conditons: @cancel_conditions,
+    cancel_conditions: @cancel_conditions,
+    cancel_condition: @cancel_condition,
     parent: 'action_rule',
-    form_name: 'shared/ar_cancel_condition_form' %>
+    post_url: project_action_chain_action_rule_action_rule_cancel_conditions_path(project, action_chain, @action_rule, @cancel_condition),
+    parent_key: :action_rule_id,
+    parent_id: @action_rule.id %>
 
 <%= link_to '戻る', [project, action_chain], class: 'btn btn-primary' %>
