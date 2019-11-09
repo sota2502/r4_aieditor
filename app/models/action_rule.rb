@@ -1,6 +1,6 @@
 class ActionRule < ApplicationRecord
-  # include Motionable
-  # include NextActTimingable
+  include Motionable
+  include NextActTimingable
   belongs_to :action_chain
   belongs_to :search
   has_many :action_rule_cancels
