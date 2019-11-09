@@ -14,13 +14,14 @@ class ActionRulesTest < ApplicationSystemTestCase
     visit action_rules_url
     click_on "New Action Rule"
 
-    fill_in "Action group", with: @action_rule.action_group_id
-    fill_in "Action type", with: @action_rule.action_type_id
-    fill_in "Holding time", with: @action_rule.holding_time
-    fill_in "Name", with: @action_rule.name
-    fill_in "Next act timing", with: @action_rule.next_act_timing_id
-    fill_in "Velocity x", with: @action_rule.velocity_x
-    fill_in "Velocity y", with: @action_rule.velocity_y
+    fill_in "Action chain", with: @action_rule.action_chain_id
+    fill_in "Hold", with: @action_rule.hold
+    fill_in "Motion", with: @action_rule.motion_id
+    fill_in "Move x", with: @action_rule.move_x
+    fill_in "Move y", with: @action_rule.move_y
+    fill_in "Next", with: @action_rule.next
+    fill_in "Search", with: @action_rule.search_id
+    fill_in "Target value", with: @action_rule.target_value
     click_on "Create Action rule"
 
     assert_text "Action rule was successfully created"
@@ -31,13 +32,14 @@ class ActionRulesTest < ApplicationSystemTestCase
     visit action_rules_url
     click_on "Edit", match: :first
 
-    fill_in "Action group", with: @action_rule.action_group_id
-    fill_in "Action type", with: @action_rule.action_type_id
-    fill_in "Holding time", with: @action_rule.holding_time
-    fill_in "Name", with: @action_rule.name
-    fill_in "Next act timing", with: @action_rule.next_act_timing_id
-    fill_in "Velocity x", with: @action_rule.velocity_x
-    fill_in "Velocity y", with: @action_rule.velocity_y
+    fill_in "Action chain", with: @action_rule.action_chain_id
+    fill_in "Hold", with: @action_rule.hold
+    fill_in "Motion", with: @action_rule.motion_id
+    fill_in "Move x", with: @action_rule.move_x
+    fill_in "Move y", with: @action_rule.move_y
+    fill_in "Next", with: @action_rule.next
+    fill_in "Search", with: @action_rule.search_id
+    fill_in "Target value", with: @action_rule.target_value
     click_on "Update Action rule"
 
     assert_text "Action rule was successfully updated"

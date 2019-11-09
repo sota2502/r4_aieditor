@@ -1,19 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  action_group: one
-  name: MyString
-  action_type_id: 1
-  next_act_timing_id: 1
-  holding_time: 1
-  velocity_x: 1.5
-  velocity_y: 1.5
+  action_chain: one
+  motion_id: 1
+  move_x: 1
+  move_y: 1
+  next: 1
+  search: one
+  target_value: 1
+  hold: 
 
 two:
-  action_group: two
-  name: MyString
-  action_type_id: 1
-  next_act_timing_id: 1
-  holding_time: 1
-  velocity_x: 1.5
-  velocity_y: 1.5
+  action_chain: two
+  motion_id: 1
+  move_x: 1
+  move_y: 1
+  next: 1
+  search: two
+  target_value: 1
+  hold: 

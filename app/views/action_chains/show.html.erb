@@ -1,0 +1,23 @@
+<h1><%= project.name %> / 行動リスト / <%= @action_chain.name %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<h2>行動リスト選択</h2>
+
+<%= render 'rule_table', project: project,
+                         action_chain: @action_chain,
+                         action_rules: @action_chain.action_rules,
+                         action_rule: @action_rule %>
+
+<div class="form-group">
+<%= link_to 'デフォルトキャンセル条件', project_action_chain_action_chain_cancel_conditions_path(project, @action_chain), class: 'btn btn-primary' %>
+</div>
+
+<div class="form-group">
+<%= link_to '出力', project_action_chain_path(project, @action_chain, format: :text), class: 'btn btn-primary' %>
+</div>
+
+<div class="form-group">
+<%= link_to '編集', edit_project_action_chain_path(project, @action_chain), class: 'btn btn-primary' %>
+<%= link_to '戻る', project_action_chains_path(project), class: 'btn btn-primary' %>
+</div>

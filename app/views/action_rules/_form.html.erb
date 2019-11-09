@@ -1,4 +1,4 @@
-<%= form_with(model: [action_group, action_rule], local: true) do |form| %>
+<%= form_with(model: action_rule, local: true) do |form| %>
   <% if action_rule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(action_rule.errors.count, "error") %> prohibited this action_rule from being saved:</h2>
@@ -11,36 +11,47 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :action_group_id, value: action_group.id %>
-
   <div class="field">
-    <% action_type_options = ActionType.all.map { |at| [at.caption, at.id] } %>
-    <%= form.label :action_type_id, '行動種別' %>
-    <%= form.select :action_type_id, action_type_options %>
+    <%= form.label :action_chain_id %>
+    <%= form.text_field :action_chain_id %>
   </div>
 
   <div class="field">
-    <% next_act_timing_options = NextActTiming.all.map { |at| [at.caption, at.id] } %>
-    <%= form.label :next_act_timing_id, '次行動発動タイミング' %>
-    <%= form.select :next_act_timing_id, next_act_timing_options %>
+    <%= form.label :motion_id %>
+    <%= form.number_field :motion_id %>
   </div>
 
   <div class="field">
-    <%= form.label :holding_time, 'ホールド時間' %>
-    <%= form.number_field :holding_time %>
+    <%= form.label :move_x %>
+    <%= form.number_field :move_x %>
   </div>
 
   <div class="field">
-    <%= form.label :velocity_x, '移動速度X' %>
-    <%= form.text_field :velocity_x %>
+    <%= form.label :move_y %>
+    <%= form.number_field :move_y %>
   </div>
 
   <div class="field">
-    <%= form.label :velocity_y, '移動速度Y' %>
-    <%= form.text_field :velocity_y %>
+    <%= form.label :next %>
+    <%= form.number_field :next %>
+  </div>
+
+  <div class="field">
+    <%= form.label :search_id %>
+    <%= form.text_field :search_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :target_value %>
+    <%= form.number_field :target_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hold %>
+    <%= form.text_field :hold %>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Submit' %>
+    <%= form.submit %>
   </div>
 <% end %>

@@ -14,12 +14,12 @@ class CancelConditionsTest < ApplicationSystemTestCase
     visit cancel_conditions_url
     click_on "New Cancel Condition"
 
-    fill_in "Action rule", with: @cancel_condition.action_rule_id
-    fill_in "Cancel type", with: @cancel_condition.cancel_type_id
+    fill_in "Cancel type", with: @cancel_condition.cancel_type
     fill_in "Parameter1", with: @cancel_condition.parameter1
     fill_in "Parameter2", with: @cancel_condition.parameter2
-    fill_in "Probability coefficient", with: @cancel_condition.probability_coefficient
-    fill_in "Probability", with: @cancel_condition.probability_id
+    fill_in "Project", with: @cancel_condition.project_id
+    fill_in "Rate coefficient", with: @cancel_condition.rate_coefficient
+    fill_in "Rate", with: @cancel_condition.rate_id
     click_on "Create Cancel condition"
 
     assert_text "Cancel condition was successfully created"
@@ -30,12 +30,12 @@ class CancelConditionsTest < ApplicationSystemTestCase
     visit cancel_conditions_url
     click_on "Edit", match: :first
 
-    fill_in "Action rule", with: @cancel_condition.action_rule_id
-    fill_in "Cancel type", with: @cancel_condition.cancel_type_id
+    fill_in "Cancel type", with: @cancel_condition.cancel_type
     fill_in "Parameter1", with: @cancel_condition.parameter1
     fill_in "Parameter2", with: @cancel_condition.parameter2
-    fill_in "Probability coefficient", with: @cancel_condition.probability_coefficient
-    fill_in "Probability", with: @cancel_condition.probability_id
+    fill_in "Project", with: @cancel_condition.project_id
+    fill_in "Rate coefficient", with: @cancel_condition.rate_coefficient
+    fill_in "Rate", with: @cancel_condition.rate_id
     click_on "Update Cancel condition"
 
     assert_text "Cancel condition was successfully updated"

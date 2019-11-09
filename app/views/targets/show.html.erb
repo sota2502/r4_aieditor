@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Action state:</strong>
+  <%= @target.action_state_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @target.value %>
+</p>
+
+<%= link_to 'Edit', edit_target_path(@target) %> |
+<%= link_to 'Back', targets_path %>

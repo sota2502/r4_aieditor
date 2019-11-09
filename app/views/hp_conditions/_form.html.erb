@@ -1,0 +1,25 @@
+<%= form_with(model: [project, exaction, hp_condition], local: true) do |form| %>
+  <% if hp_condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hp_condition.errors.count, "error") %> prohibited this hp_condition from being saved:</h2>
+
+      <ul>
+        <% hp_condition.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :exaction_id, value: exaction.id %>
+
+  <div class="form-group">
+    <%= form.label :name, 'HP条件(XX%以下)', class: 'col-sm-2' %>
+    <div class="col-sm-8">
+      <%= form.number_field :value, class: 'form-control' %>
+    </div>
+    <div class="col-sm-2">
+      <%= form.submit "送信", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

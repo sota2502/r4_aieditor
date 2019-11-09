@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @project.name %></h1>
+
+<ul>
+  <li>
+    <% if @project.action_state.present? %>
+      <%= link_to 'ActionState', project_action_state_path(@project, @project.action_state) %>
+    <% else %>
+      <%= link_to 'ActionState', new_project_action_state_path(@project) %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to 'ActionChain', project_action_chains_path(@project) %>
+  </li>
+  <li>
+    <% if @project.exaction.present? %>
+      <%= link_to 'Exaction', project_exaction_path(@project, @project.exaction) %>
+    <% else %>
+      <%= link_to 'Exaction', new_project_exaction_path(@project) %>
+    <% end %>
+  </li>
+</ul>
+
+<div class="form-group">
+  <%= link_to '出力', project_path(@project, format: :text), class: 'btn btn-primary' %>
+</div>
+<div class="form-group">
+  <%= link_to '編集', edit_project_path(@project), class: 'btn btn-primary' %>
+  <%= link_to '戻る', projects_path, class: 'btn btn-primary' %>
+</div>

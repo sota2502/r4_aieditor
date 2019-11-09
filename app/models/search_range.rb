@@ -1,2 +1,0 @@
-class SearchRange < ApplicationRecord
-end

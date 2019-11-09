@@ -1,0 +1,60 @@
+<%= form_with(model: [project, action_chain, action_rule], local: true) do |form| %>
+  <%= form.hidden_field :action_chain_id, value: action_chain.id %>
+  <table class="table table-striped js-form-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>行動種別/モーション</th>
+        <th>次行動発動タイミング</th>
+        <th>サーチ範囲</th>
+        <th>ターゲット</th>
+        <th>ホールド時間</th>
+        <th>移動速度X</th>
+        <th>移動速度Y</th>
+        <th>キャンセル条件</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% motions = Motion.all %>
+      <% next_act_timings = NextActTiming.all %>
+      <% target_types = TargetType.all %>
+
+      <% action_rules.each.with_index(1) do |action_rule, i| %>
+        <%= form.fields_for "action_rules[]", action_rule do |f| %>
+          <%= f.hidden_field :id, value: action_rule.id %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= f.collection_select(:motion_id, motions, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:next, next_act_timings, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:search_id, project.action_state.searches, :id, :name, {prompt: true}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:target_value, target_types, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
+            <td><%= f.number_field :hold, class: 'form-control' %></td>
+            <td><%= f.number_field :move_x, class: 'form-control' %></td>
+            <td><%= f.number_field :move_y, class: 'form-control' %></td>
+            <td><%= link_to '...', project_action_chain_action_rule_action_rule_cancel_conditions_path(project, @action_chain, action_rule) %> </td>
+          </tr>
+        <% end %>
+      <% end %>
+
+      <%= form.fields_for "new_action_rules[]", action_rule do |f| %>
+        <tr class="js-new-form-item">
+          <td>#</td>
+          <td><%= f.collection_select(:motion_id, motions, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
+          <td><%= f.collection_select(:next, next_act_timings, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
+          <td><%= f.collection_select(:search_id, project.action_state.searches, :id, :name, {prompt: true}, {class: 'form-control'}) %></td>
+          <td><%= f.collection_select(:target_value, target_types, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
+          <td><%= f.number_field :hold, class: 'form-control' %></td>
+          <td><%= f.number_field :move_x, class: 'form-control' %></td>
+          <td><%= f.number_field :move_y, class: 'form-control' %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-group">
+    <button class="btn btn-primary js-new-trigger">追加</button>
+    <%= form.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,39 +1,44 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Action group:</strong>
-  <%= @action_rule.action_group_id %>
+  <strong>Action chain:</strong>
+  <%= @action_rule.action_chain_id %>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @action_rule.name %>
+  <strong>Motion:</strong>
+  <%= @action_rule.motion_id %>
 </p>
 
 <p>
-  <strong>Action type:</strong>
-  <%= @action_rule.action_type_id %>
+  <strong>Move x:</strong>
+  <%= @action_rule.move_x %>
 </p>
 
 <p>
-  <strong>Next act timing:</strong>
-  <%= @action_rule.next_act_timing_id %>
+  <strong>Move y:</strong>
+  <%= @action_rule.move_y %>
 </p>
 
 <p>
-  <strong>Holding time:</strong>
-  <%= @action_rule.holding_time %>
+  <strong>Next:</strong>
+  <%= @action_rule.next %>
 </p>
 
 <p>
-  <strong>Velocity x:</strong>
-  <%= @action_rule.velocity_x %>
+  <strong>Search:</strong>
+  <%= @action_rule.search_id %>
 </p>
 
 <p>
-  <strong>Velocity y:</strong>
-  <%= @action_rule.velocity_y %>
+  <strong>Target value:</strong>
+  <%= @action_rule.target_value %>
 </p>
 
-<%= link_to '編集', edit_action_rule_path(@action_rule) %> |
-<%= link_to '戻る', action_rules_path %>
+<p>
+  <strong>Hold:</strong>
+  <%= @action_rule.hold %>
+</p>
+
+<%= link_to 'Edit', edit_action_rule_path(@action_rule) %> |
+<%= link_to 'Back', action_rules_path %>

@@ -1,16 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @action_group.name %> / 行動(<%= @action_rule.caption %>) / キャンセル条件</h1>
+<h1>Cancel Conditions</h1>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>キャンセル条件種別</th>
-      <th>確率変数</th>
-      <th>係数</th>
-      <th>パラメータ1</th>
-      <th>パラメータ2</th>
+      <th>Project</th>
+      <th>Cancel type</th>
+      <th>Rate</th>
+      <th>Rate coefficient</th>
+      <th>Parameter1</th>
+      <th>Parameter2</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,14 +18,15 @@
   <tbody>
     <% @cancel_conditions.each do |cancel_condition| %>
       <tr>
-        <td><%= cancel_condition.id %>
-        <td><%= cancel_condition.cancel_type.caption %></td>
-        <td><%= cancel_condition.probability_id %></td>
-        <td><%= cancel_condition.probability_coefficient %></td>
+        <td><%= cancel_condition.project_id %></td>
+        <td><%= cancel_condition.cancel_type %></td>
+        <td><%= cancel_condition.rate_id %></td>
+        <td><%= cancel_condition.rate_coefficient %></td>
         <td><%= cancel_condition.parameter1 %></td>
         <td><%= cancel_condition.parameter2 %></td>
-        <td><%= link_to '編集', edit_action_group_action_rule_cancel_condition_path(@action_group, @action_rule, cancel_condition) %></td>
-        <td><%= link_to '削除', action_group_action_rule_cancel_condition_path(@action_group, @action_rule, cancel_condition), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', cancel_condition %></td>
+        <td><%= link_to 'Edit', edit_cancel_condition_path(cancel_condition) %></td>
+        <td><%= link_to 'Destroy', cancel_condition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,10 +34,4 @@
 
 <br>
 
-<div>
-  <%= link_to 'キャンセル条件の追加', new_action_group_action_rule_cancel_condition_path(@action_group, @action_rule) %>
-</div>
-
-<div>
-  <%= link_to '戻る', action_group_path(@action_group) %>
-</div>
+<%= link_to 'New Cancel Condition', new_cancel_condition_path %>

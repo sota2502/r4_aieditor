@@ -1,5 +1,6 @@
-<h1><%= @action_group.name %> / 行動(<%= @action_rule.caption %>) / キャンセル条件(ID=<%= @cancel_condition.id%>)の編集</h1>
+<h1>Editing Cancel Condition</h1>
 
 <%= render 'form', cancel_condition: @cancel_condition %>
 
-<%= link_to 'Back', action_group_path(@action_group) %>
+<%= link_to 'Show', @cancel_condition %> |
+<%= link_to 'Back', cancel_conditions_path %>

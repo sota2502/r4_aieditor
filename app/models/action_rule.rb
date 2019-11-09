@@ -1,24 +1,45 @@
 class ActionRule < ApplicationRecord
-  belongs_to :action_group
-  has_many :cancel_condition
+  include Motionable
+  include NextActTimingable
+  belongs_to :action_chain
+  belongs_to :search
+  has_many :action_rule_cancels
+  has_many :cancel_conditions, through: :action_rule_cancels
 
-  def action_type
-    @action_type ||= begin
-      ActionType.new(self.action_type_id)
-    end
+  validates :motion_id, presence: true, inclusion: { in: Motion::DEFINITION.keys }
+  validates :move_x, numericality: { only_integer: true }
+  validates :move_y, numericality: { only_integer: true }
+  validates :next, presence: true, inclusion: { in: NextActTiming::DEFINITION.keys }
+  validates :target_value, presence: true, inclusion: { in: TargetType::DEFINITION.keys }
+  validates :hold, presence: true, numericality: { only_integer: true }
+
+  def target_type
+    TargetType.new(target_value)
   end
 
-  def next_act_timing 
-    @next_act_timing ||= begin
-      if self.next_act_timing_id.nil?
-        nil
+  def for_lua
+    {
+      motion: motion.caption,
+      move: move_for_lua,
+      next: self.next,
+      search: search.name,
+      target: target_value,
+      hold: hold,
+      cancel: cancel_conditions.map(&:for_lua)
+    }
+  end
+
+  def add_cancel_condition(cancel_condition)
+    action_rule_cancels.create!(cancel_condition: cancel_condition)
+  end
+
+  private
+
+    def move_for_lua
+      if move_x.present? && move_y.present?
+        [move_x, move_y]
       else
-        NextActTiming.new(self.next_act_timing_id)
+        nil
       end
     end
-  end
-
-  def caption
-    "ID:#{self.id},Type:#{action_type.caption}"
-  end
 end

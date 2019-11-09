@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Searches</h1>
+
+<%= form_with(model: [project, action_state, @search], local: true) do |form| %>
+  <%= form.hidden_field :action_state_id, value: action_state.id %>
+  <table class="table table-striped js-form-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>X1</th>
+        <th>Y1</th>
+        <th>X2</th>
+        <th>Y2</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @searches.each.with_index(1) do |search, i| %>
+        <%= form.fields_for "searches[]", search do |f| %>
+          <%= f.hidden_field :id, value: search.id %>
+          <tr class="js-form-item">
+            <td><%= i %></td>
+            <td><%= f.text_field :name, class: 'form-control' %></td>
+            <td><%= f.number_field :x1, class: 'form-control' %></td>
+            <td><%= f.number_field :y1, class: 'form-control' %></td>
+            <td><%= f.number_field :x2, class: 'form-control' %></td>
+            <td><%= f.number_field :y2, class: 'form-control' %></td>
+            <td><%= link_to '削除', [project, action_state, search], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+
+      <%= form.fields_for "new_searches[]", @search do |f| %>
+        <tr class="js-new-form-item">
+          <td>#</td>
+          <td><%= f.text_field :name, class: 'form-control' %></td>
+          <td><%= f.number_field :x1, class: 'form-control' %></td>
+          <td><%= f.number_field :y1, class: 'form-control' %></td>
+          <td><%= f.number_field :x2, class: 'form-control' %></td>
+          <td><%= f.number_field :y2, class: 'form-control' %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-group">
+    <button class="btn btn-primary js-new-trigger">追加</button>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit '保存', class: 'btn btn-primary' %>
+    <%= link_to '戻る', [project, action_state], class: 'btn btn-primary' %>
+  </div>
+<% end %>

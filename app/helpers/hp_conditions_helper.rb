@@ -1,0 +1,2 @@
+module HpConditionsHelper
+end

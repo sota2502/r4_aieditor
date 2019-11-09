@@ -1,6 +1,5 @@
 class CancelConditionsController < ApplicationController
   before_action :set_cancel_condition, only: [:show, :edit, :update, :destroy]
-  before_action :set_action_rule
 
   # GET /cancel_conditions
   # GET /cancel_conditions.json
@@ -29,7 +28,7 @@ class CancelConditionsController < ApplicationController
 
     respond_to do |format|
       if @cancel_condition.save
-        format.html { redirect_to action: :index, notice: 'Cancel condition was successfully created.' }
+        format.html { redirect_to @cancel_condition, notice: 'Cancel condition was successfully created.' }
         format.json { render :show, status: :created, location: @cancel_condition }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class CancelConditionsController < ApplicationController
   def update
     respond_to do |format|
       if @cancel_condition.update(cancel_condition_params)
-        format.html { redirect_to action: :index, notice: 'Cancel condition was successfully updated.' }
+        format.html { redirect_to @cancel_condition, notice: 'Cancel condition was successfully updated.' }
         format.json { render :show, status: :ok, location: @cancel_condition }
       else
         format.html { render :edit }
@@ -68,13 +67,8 @@ class CancelConditionsController < ApplicationController
       @cancel_condition = CancelCondition.find(params[:id])
     end
 
-    def set_action_rule
-      @action_rule = ActionRule.find(params[:action_rule_id])
-      @action_group = @action_rule.action_group
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def cancel_condition_params
-      params.require(:cancel_condition).permit(:action_rule_id, :cancel_type_id, :probability_id, :probability_coefficient, :parameter1, :parameter2)
+      params.require(:cancel_condition).permit(:project_id, :cancel_type, :rate_id, :rate_coefficient, :parameter1, :parameter2)
     end
 end

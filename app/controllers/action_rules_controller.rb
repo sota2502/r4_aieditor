@@ -1,11 +1,14 @@
 class ActionRulesController < ApplicationController
+  include Projectable
+  include ActionChainable
+
   before_action :set_action_rule, only: [:show, :edit, :update, :destroy]
-  before_action :set_action_group
 
   # GET /action_rules
   # GET /action_rules.json
   def index
-    @action_rules = ActionRule.all
+    @action_rule = ActionRule.new
+    @action_rules = action_chain.action_rules
   end
 
   # GET /action_rules/1
@@ -25,16 +28,11 @@ class ActionRulesController < ApplicationController
   # POST /action_rules
   # POST /action_rules.json
   def create
-    @action_rule = ActionRule.new(action_rule_params)
+    ActionRulesForm.new(action_rule_params).save
 
     respond_to do |format|
-      if @action_rule.save
-        format.html { redirect_to action_group_url(@action_group) }
-        format.json { render :show, status: :created, location: @action_rule }
-      else
-        format.html { render :new }
-        format.json { render json: @action_rule.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to [project, action_chain], notice: 'Action rule was successfully created.' }
+      format.json { render :show, status: :created, location: @action_rule }
     end
   end
 
@@ -43,7 +41,7 @@ class ActionRulesController < ApplicationController
   def update
     respond_to do |format|
       if @action_rule.update(action_rule_params)
-        format.html { redirect_to action_group_url(@action_group) }
+        format.html { redirect_to [project, action_chain], notice: 'Action rule was successfully updated.' }
         format.json { render :show, status: :ok, location: @action_rule }
       else
         format.html { render :edit }
@@ -57,7 +55,7 @@ class ActionRulesController < ApplicationController
   def destroy
     @action_rule.destroy
     respond_to do |format|
-      format.html { redirect_to action_rules_url, notice: 'Action rule was successfully destroyed.' }
+      format.html { redirect_to [project, action_chain], notice: 'Action rule was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,12 +66,13 @@ class ActionRulesController < ApplicationController
       @action_rule = ActionRule.find(params[:id])
     end
 
-    def set_action_group
-      @action_group = ActionGroup.find(params[:action_group_id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def action_rule_params
-      params.require(:action_rule).permit(:action_group_id, :name, :action_type_id, :next_act_timing_id, :holding_time, :velocity_x, :velocity_y)
+      params.permit(:project_id,
+                    :action_chain_id,
+                    action_rule: {
+                      action_rules: [:id, :motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold],
+                      new_action_rules: [:motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold]
+                    })
     end
 end

@@ -17,7 +17,7 @@ class ActionRulesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create action_rule" do
     assert_difference('ActionRule.count') do
-      post action_rules_url, params: { action_rule: { action_group_id: @action_rule.action_group_id, action_type_id: @action_rule.action_type_id, holding_time: @action_rule.holding_time, name: @action_rule.name, next_act_timing_id: @action_rule.next_act_timing_id, velocity_x: @action_rule.velocity_x, velocity_y: @action_rule.velocity_y } }
+      post action_rules_url, params: { action_rule: { action_chain_id: @action_rule.action_chain_id, hold: @action_rule.hold, motion_id: @action_rule.motion_id, move_x: @action_rule.move_x, move_y: @action_rule.move_y, next: @action_rule.next, search_id: @action_rule.search_id, target_value: @action_rule.target_value } }
     end
 
     assert_redirected_to action_rule_url(ActionRule.last)
@@ -34,7 +34,7 @@ class ActionRulesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update action_rule" do
-    patch action_rule_url(@action_rule), params: { action_rule: { action_group_id: @action_rule.action_group_id, action_type_id: @action_rule.action_type_id, holding_time: @action_rule.holding_time, name: @action_rule.name, next_act_timing_id: @action_rule.next_act_timing_id, velocity_x: @action_rule.velocity_x, velocity_y: @action_rule.velocity_y } }
+    patch action_rule_url(@action_rule), params: { action_rule: { action_chain_id: @action_rule.action_chain_id, hold: @action_rule.hold, motion_id: @action_rule.motion_id, move_x: @action_rule.move_x, move_y: @action_rule.move_y, next: @action_rule.next, search_id: @action_rule.search_id, target_value: @action_rule.target_value } }
     assert_redirected_to action_rule_url(@action_rule)
   end
 

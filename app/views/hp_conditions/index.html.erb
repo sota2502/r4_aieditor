@@ -1,10 +1,29 @@
-<h1>HP条件選択</h1>
+<p id="notice"><%= notice %></p>
 
-<% hp_condition_options = HpCondition.all.map { |hp| [hp.caption, hp.id] } %>
+<h1>Hp Conditions</h1>
 
-<%= form_with url: request.path, method: :get, local: true do |form| %>
-  <%= form.select :hp_condition_id, hp_condition_options %>
-  <%= form.submit 'Submit' %>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Exaction</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= link_to '戻る', action_groups_path %>
+  <tbody>
+    <% @hp_conditions.each do |hp_condition| %>
+      <tr>
+        <td><%= hp_condition.exaction_id %></td>
+        <td><%= hp_condition.value %></td>
+        <td><%= link_to 'Show', hp_condition %></td>
+        <td><%= link_to 'Edit', edit_hp_condition_path(hp_condition) %></td>
+        <td><%= link_to 'Destroy', hp_condition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hp Condition', new_hp_condition_path %>

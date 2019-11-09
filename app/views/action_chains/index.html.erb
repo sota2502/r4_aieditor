@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Action Chains</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @action_chains.each do |action_chain| %>
+      <tr>
+        <td><%= link_to action_chain.name, [project, action_chain] %></td>
+        <td><%= link_to '削除', [project, action_chain], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class="form-group">
+<%= link_to '追加', new_project_action_chain_path(project), class: 'btn btn-primary' %>
+</div>
+
+<div class="form-group">
+<%= link_to '戻る', project_path(project), class: 'btn btn-primary' %>
+</div>

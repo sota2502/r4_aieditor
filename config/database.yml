@@ -17,8 +17,10 @@ development:
   # database: db/development.sqlite3
   database: ai_editor_development
   username: root
-  password: SdXbrfuypaVy
-  host: mysql_db
+  # password: SdXbrfuypaVy
+  # host: mysql_db
+  password: ''
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,8 +30,10 @@ test:
   # database: db/test.sqlite3
   database: ai_editor_test
   username: root
-  password: SdXbrfuypaVy
-  host: mysql_db
+  # password: SdXbrfuypaVy
+  # host: mysql_db
+  password: ''
+  host: localhost
 
 production:
   <<: *default
