@@ -71,8 +71,8 @@ class ActionRulesController < ApplicationController
       params.permit(:project_id,
                     :action_chain_id,
                     action_rule: {
-                      action_rules: [:id, :motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold],
-                      new_action_rules: [:motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold]
+                      action_rules: [:id, :motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold, :way_id],
+                      new_action_rules: [:motion_id, :move_x, :move_y, :next, :search_id, :target_value, :hold, :way_id]
                     })
     end
 end

@@ -1,7 +1,7 @@
 class ActionRulesForm
   include ActiveModel::Model
 
-  ATTRIBUTES = %i(motion_id move_x move_y next search_id target_value hold)
+  ATTRIBUTES = %i(motion_id move_x move_y next search_id target_value hold way_id)
 
   def initialize(action_rules_params = {})
     @action_rules_params = action_rules_params
