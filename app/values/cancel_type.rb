@@ -15,7 +15,12 @@ class CancelType
     12 => { name: :target_flip, caption: 'ターゲット弾かれ' },
     13 => { name: :target_faint, caption: 'ターゲットピヨリ' },
     14 => { name: :target_find, caption: 'ターゲット検知' },
-    15 => { name: :target_not_find, caption: 'ターゲット非検知' }
+    15 => { name: :target_not_find, caption: 'ターゲット非検知' },
+    101 => { name: :own_hp, caption: '自分HP' },
+    102 => { name: :own_stamina, caption: '自分スタミナ' },
+    103 => { name: :own_robustness, caption: '自分頑強度' },
+    104 => { name: :own_balance, caption: '自分体幹' },
+    105 => { name: :own_stock, caption: '自分ストック' }
   }
 
   attr_reader :id, :caption
