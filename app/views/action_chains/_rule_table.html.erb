@@ -11,6 +11,7 @@
         <th>ホールド時間</th>
         <th>移動速度X</th>
         <th>移動速度Y</th>
+        <th>方向指定 <span class="label label-danger">必須</span></th>
         <th>キャンセル条件</th>
       </tr>
     </thead>
@@ -19,6 +20,7 @@
       <% motions = Motion.all %>
       <% next_act_timings = NextActTiming.all %>
       <% target_types = TargetType.all %>
+      <% ways = Way.all %>
 
       <% action_rules.each.with_index(1) do |action_rule, i| %>
         <%= form.fields_for "action_rules[]", action_rule do |f| %>
@@ -32,6 +34,7 @@
             <td><%= f.number_field :hold, class: 'form-control' %></td>
             <td><%= f.number_field :move_x, class: 'form-control' %></td>
             <td><%= f.number_field :move_y, class: 'form-control' %></td>
+            <td><%= f.collection_select(:way_id, ways, :id, :caption, {}, {class: 'form-control'}) %></td>
             <td><%= link_to '...', project_action_chain_action_rule_action_rule_cancel_conditions_path(project, @action_chain, action_rule) %> </td>
           </tr>
         <% end %>
@@ -47,6 +50,7 @@
           <td><%= f.number_field :hold, class: 'form-control' %></td>
           <td><%= f.number_field :move_x, class: 'form-control' %></td>
           <td><%= f.number_field :move_y, class: 'form-control' %></td>
+          <td><%= f.collection_select(:way_id, ways, :id, :caption, {}, {class: 'form-control'}) %></td>
           <td></td>
         </tr>
       <% end %>

@@ -1,6 +1,6 @@
 class ActionRule < ApplicationRecord
-  include Motionable
-  include NextActTimingable
+  # include Motionable
+  # include NextActTimingable
   belongs_to :action_chain
   belongs_to :search
   has_many :action_rule_cancels
@@ -22,6 +22,7 @@ class ActionRule < ApplicationRecord
       search: search.name,
       target: target_value,
       hold: hold,
+      way: way_id,
       cancel: cancel_conditions.map(&:for_lua)
     }
   end

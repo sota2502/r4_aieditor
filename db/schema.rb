@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_03_065442) do
+ActiveRecord::Schema.define(version: 2019_11_09_150816) do
 
   create_table "action_chain_cancels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "action_chain_id", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_11_03_065442) do
     t.bigint "search_id", null: false
     t.integer "target_value"
     t.integer "motion_id"
-    t.bigint "rate_id", null: false
+    t.bigint "rate_id"
     t.integer "rate_coefficient", unsigned: true
     t.integer "cancel_type_id"
     t.bigint "action_chain_id", null: false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2019_11_03_065442) do
     t.bigint "search_id", null: false
     t.integer "target_value"
     t.integer "hold", unsigned: true
+    t.integer "way_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["action_chain_id"], name: "index_action_rules_on_action_chain_id"
