@@ -7,12 +7,13 @@ class HpConditionsController < ApplicationController
   # GET /hp_conditions
   # GET /hp_conditions.json
   def index
-    @hp_conditions = HpCondition.all
+    @hp_conditions = exaction.hp_conditions.all
   end
 
   # GET /hp_conditions/1
   # GET /hp_conditions/1.json
   def show
+    @action_routine = ActionRoutine.new
   end
 
   # GET /hp_conditions/new
