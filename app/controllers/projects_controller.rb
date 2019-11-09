@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.text do
-        data = @project.to_lua
+        data = @project.to_lua.encode('Shift_JIS')
         name = @project.name + '.lua'
         send_data(data, filename: name)
       end

@@ -14,7 +14,7 @@ class ExactionsController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.text do
-        data = LuaScript::Dumper.dump_with_func('exaction', @exaction.for_lua)
+        data = LuaScript::Dumper.dump_with_func('exaction', @exaction.for_lua).encode('Shift_JIS')
         name = @exaction.name + '.lua'
         send_data(data, filename: name)
       end

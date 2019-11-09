@@ -15,7 +15,7 @@ class ActionChainsController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.text do
-        data = LuaScript::Dumper.dump_with_func('actionchain', @action_chain.for_lua)
+        data = LuaScript::Dumper.dump_with_func('actionchain', @action_chain.for_lua).encode('Shift_JIS')
         name = @action_chain.name + '.lua'
         send_data(data, filename: name)
       end

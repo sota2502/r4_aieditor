@@ -14,7 +14,7 @@ class ActionStatesController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.text do
-        data = LuaScript::Dumper.dump_with_func('actionstate', @action_state.for_lua)
+        data = LuaScript::Dumper.dump_with_func('actionstate', @action_state.for_lua).encode('Shift_JIS')
         name = @action_state.chara + '.lua'
         send_data(data, filename: name)
       end
