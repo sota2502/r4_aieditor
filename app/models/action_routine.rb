@@ -3,7 +3,7 @@ class ActionRoutine < ApplicationRecord
   include CancelTypable
   belongs_to :hp_condition
   belongs_to :search
-  belongs_to :rate
+  belongs_to :rate, optional: true
   belongs_to :action_chain
 
   def target_type

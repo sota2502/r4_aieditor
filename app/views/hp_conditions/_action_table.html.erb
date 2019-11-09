@@ -4,12 +4,12 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>サーチ範囲</th>
-        <th>ターゲット種別</th>
-        <th>ターゲットモーション</th>
+        <th>サーチ範囲 <span class="label label-danger">必須</span></th>
+        <th>ターゲット種別 <span class="label label-danger">必須</span></th>
+        <th>ターゲットモーション <span class="label label-danger">必須</span></th>
         <th colspan="2">実行確率(変数名 x 係数)</th>
         <th>前回行動キャンセル種別</th>
-        <th>実行行動リスト名</th>
+        <th>実行行動リスト名 <span class="label label-danger">必須</span></th>
         <th></th>
       </tr>
     </thead>
@@ -27,13 +27,13 @@
           <%= f.hidden_field :id, value: action_routine.id %>
           <tr>
             <td><%= i %></td>
-            <td><%= f.collection_select(:search_id, searches, :id, :name, {prompt: true}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:search_id, searches, :id, :name, {prompt: false}, {class: 'form-control'}) %></td>
             <td><%= f.collection_select(:target_value, target_types, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
-            <td><%= f.collection_select(:motion_id, motions, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
-            <td><%= f.collection_select(:rate_id, rates, :id, :name, {prompt: true}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:motion_id, motions, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:rate_id, rates, :id, :name, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
             <td><%= f.number_field :rate_coefficient, class: 'form-control' %></td>
-            <td><%= f.collection_select(:cancel_type_id, cancel_types, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
-            <td><%= f.collection_select(:action_chain_id, action_chains, :id, :name, {prompt: true}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:cancel_type_id, cancel_types, :id, :caption, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:action_chain_id, action_chains, :id, :name, {}, {class: 'form-control'}) %></td>
             <td><%= link_to '削除', [project, exaction, hp_condition, action_routine], method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
@@ -42,13 +42,13 @@
       <%= form.fields_for "new_action_routines[]", action_routine do |f| %>
         <tr class="js-new-form-item">
           <td>#</td>
-          <td><%= f.collection_select(:search_id, searches, :id, :name, {prompt: true}, {class: 'form-control'}) %></td>
+          <td><%= f.collection_select(:search_id, searches, :id, :name, {prompt: false}, {class: 'form-control'}) %></td>
           <td><%= f.collection_select(:target_value, target_types, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
-          <td><%= f.collection_select(:motion_id, motions, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
-          <td><%= f.collection_select(:rate_id, rates, :id, :name, {prompt: true}, {class: 'form-control'}) %></td>
+          <td><%= f.collection_select(:motion_id, motions, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
+          <td><%= f.collection_select(:rate_id, rates, :id, :name, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
           <td><%= f.number_field :rate_coefficient, class: 'form-control' %></td>
-          <td><%= f.collection_select(:cancel_type_id, cancel_types, :id, :caption, {prompt: true}, {class: 'form-control'}) %></td>
-          <td><%= f.collection_select(:action_chain_id, action_chains, :id, :name, {prompt: true}, {class: 'form-control'}) %></td>
+          <td><%= f.collection_select(:cancel_type_id, cancel_types, :id, :caption, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
+          <td><%= f.collection_select(:action_chain_id, action_chains, :id, :name, {}, {class: 'form-control'}) %></td>
           <td></td>
         </tr>
       <% end %>
