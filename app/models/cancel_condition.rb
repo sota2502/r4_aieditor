@@ -7,8 +7,8 @@ class CancelCondition < ApplicationRecord
     [
       cancel_type_id,
       rate_for_lua,
-      parameter1,
-      parameter2
+      parameter1_for_lua,
+      parameter2_for_lua
     ]
   end
 
@@ -23,6 +23,30 @@ class CancelCondition < ApplicationRecord
         end
       else
         [rate.name, rate_coefficient].select(&:present?)
+      end
+    end
+
+    def parameter1_for_lua
+      parameter_lua_value(parameter1, cancel_type.parameter1)
+    end
+
+    def parameter2_for_lua
+      parameter_lua_value(parameter2, cancel_type.parameter2)
+    end
+
+    def parameter_lua_value(value, type)
+      return nil if value.nil?
+      case type
+      when :number then
+        value
+      when :motions then
+        Motion.new(value).name
+      when :target_types then
+        value
+      when :searched then
+        Search.find(value).name
+      else
+        nil
       end
     end
 end
