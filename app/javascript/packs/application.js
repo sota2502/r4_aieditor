@@ -18,3 +18,4 @@ require('jquery')
 // const imagePath = (name) => images(name, true)
 
 import 'new_form'
+import 'parameter_switcher'

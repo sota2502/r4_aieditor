@@ -1,3 +1,19 @@
+<%
+  cancel_types = CancelType.all
+  selector_source = {
+    cancel_types: cancel_types,
+    rates: project.action_state.rates,
+    target_types: TargetType.all,
+    motions: Motion.all,
+    searches: project.action_state.searches
+  }
+%>
+
+
+<script>
+window.cancelTypes = <%= CancelType::DEFINITION.to_json.html_safe %>
+</script>
+
 <%= form_with(url: post_url, method: :post, local: true) do |form| %>
   <%= form.hidden_field :project_id, value: project.id %>
   <%= form.hidden_field parent_key, value: parent_id %>
@@ -15,30 +31,16 @@
     </thead>
 
     <tbody>
-      <% cancel_types = CancelType.all %>
-      <% rates = project.action_state.rates %>
-
       <% cancel_conditions.each.with_index(1) do |cancel_condition, i| %>
         <%= form.fields_for "cancel_conditions[]", cancel_condition do |f| %>
-          <tr>
+          <tr class="js-cancel-condition-row">
             <%= f.hidden_field :project_id, value: project.id %>
             <%= f.hidden_field :id, value: cancel_condition.id %>
             <td><%= i %></td>
-            <td><%= f.collection_select(:cancel_type_id, cancel_types, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
-            <td><%= f.collection_select(:rate_id, rates, :id, :name, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
-            <td><%= f.number_field :rate_coefficient, class: 'form-control' %></td>
-            <td><%= f.number_field :parameter1, class: 'form-control' %></td>
-            <td><%= f.number_field :parameter2, class: 'form-control' %></td>
-            <td>
-                <%
-                  delete_path = if parent == 'action_chain'
-                                  project_action_chain_action_chain_cancel_condition_path(project, action_chain, cancel_condition)
-                                else
-                                  project_action_chain_action_rule_action_rule_cancel_condition_path(project, action_chain, @action_rule, cancel_condition)
-                                end
-                %>
-                <%= link_to '削除', delete_path, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </td>
+            <%= render 'shared/cancel_condition_columns', parent: parent,
+                                                          f: f,
+                                                          cancel_condition: cancel_condition,
+                                                          selector_source: selector_source %>
           </tr>
         <% end %>
       <% end %>
@@ -47,12 +49,10 @@
         <tr class="js-new-form-item">
           <%= f.hidden_field :project_id, value: project.id %>
           <td>#</td>
-          <td><%= f.collection_select(:cancel_type_id, cancel_types, :id, :caption, {prompt: false}, {class: 'form-control'}) %></td>
-          <td><%= f.collection_select(:rate_id, rates, :id, :name, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
-          <td><%= f.number_field :rate_coefficient, class: 'form-control' %></td>
-          <td><%= f.number_field :parameter1, class: 'form-control' %></td>
-          <td><%= f.number_field :parameter2, class: 'form-control' %></td>
-          <td></td>
+          <%= render 'shared/cancel_condition_columns', parent: parent,
+                                                        f: f,
+                                                        cancel_condition: cancel_condition,
+                                                        selector_source: selector_source %>
         </tr>
       <% end %>
     </tbody>
