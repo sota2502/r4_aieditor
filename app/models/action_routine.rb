@@ -14,7 +14,7 @@ class ActionRoutine < ApplicationRecord
     {
       search: search.name,
       target: target_value,
-      motion: motion.caption,
+      motion: motion.name,
       rate: rate_for_lua,
       cancel: cancel_type_id,
       action: action_chain.name
