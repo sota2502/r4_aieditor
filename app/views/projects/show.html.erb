@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if notice.present? %>
+  <p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
 
 <h1><%= @project.name %></h1>
 
@@ -24,8 +26,7 @@
 
 <div class="form-group">
   <%= link_to '出力', project_path(@project, format: :text), class: 'btn btn-primary' %>
-</div>
-<div class="form-group">
+  <%= link_to 'インポート', project_importer_index_path(@project), class: 'btn btn-primary' %>
   <%= link_to '編集', edit_project_path(@project), class: 'btn btn-primary' %>
   <%= link_to '戻る', projects_path, class: 'btn btn-primary' %>
 </div>
