@@ -10,8 +10,8 @@ module LuaScript
     end
 
     def import
+      table = lua_table
       ApplicationRecord.transaction do
-        table = lua_table
         import_action_state(table['actionstate'])
         table['actionchains'].each do |action_chain|
           import_action_chain(action_chain)
@@ -32,36 +32,50 @@ module LuaScript
         state = Lua::State.new
         state.__load_stdlib :all
         state.__eval code
-        return state.stash
+        return recursive_convert(state.stash)
+      end
+
+      def recursive_convert(ltable)
+        return ltable unless ltable.is_a?(Lua::Table)
+
+        hash = ltable.to_hash
+        if hash.keys.all? { |e| e.is_a?(Numeric) }
+          ltable.to_a.map { |v| recursive_convert(v) }
+        else
+          hash.deep_transform_values { |v| recursive_convert(v) }
+        end
       end
 
       def import_action_state(table)
         action_state = ActionState.includes(:searches, :rates, :targets)
                                   .find_or_initialize_by(project: @project)
-        action_state.attributes = table.to_hash.slice('chara', 'field', 'freq', 'precis')
+        action_state.attributes = table.slice('chara', 'field', 'freq', 'precis')
         action_state.save!
 
-        param = table.to_hash
-        searches = param.delete('searches').to_hash.map do |name, pos|
-          arr = pos.to_a.map(&:to_i)
+        searches = table['searches'].map do |name, pos|
+          arr = pos.map(&:to_i)
           search = action_state.searches.find_or_initialize_by(name: name)
-          search.attributes = { x1: arr[0], y1: arr[1], x2: arr[2], y2: arr[3] }
+          search.attributes = %i(x1 y1 x2 y2).zip(arr).to_h
           search
         end
-        Search.import! searches
+        Search.import! searches, on_duplicate_key_update: %i(x1 y1 x2 y2)
 
-        rates = param.delete('rates').to_hash.map do |name, value|
+        rates = table['rates'].map do |name, value|
           rate = action_state.rates.find_or_initialize_by(name: name)
           rate.value = value.to_i
           rate
         end
-        Rate.import! rates
+        Rate.import! rates, on_duplicate_key_update: [:value]
 
-        # targets = param.delete('targets').to_a.map { |e| Target.new(value: e.to_i) }
+        action_state.targets.destroy_all
+        targets = table['targets'].map do |value|
+          Target.new(action_state: action_state, value: value.to_i)
+        end
+        Target.import! targets, on_duplicate_key_update: [:value]
       end
 
       def import_action_chain(table)
-
+        LuaScript::Importers::ActionChain.import(@project, table)
       end
 
       def import_exaction(table)
