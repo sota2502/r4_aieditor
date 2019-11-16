@@ -12,8 +12,12 @@ class ImporterController < ApplicationController
       return render action: :index
     end
 
-    # render plain: import_params[:file].read.encode("UTF-8", "Shift_JIS")
+    lua_string = import_params[:file].read.encode("UTF-8", "Shift_JIS")
+    LuaScript::Importer.new(project, lua_string).import
     redirect_to project, notice: 'Project was successfully imported.'
+  rescue => error
+    @notice = error
+    render action: :index
   end
 
   private

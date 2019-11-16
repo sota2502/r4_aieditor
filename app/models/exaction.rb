@@ -1,6 +1,6 @@
 class Exaction < ApplicationRecord
   belongs_to :project
-  has_many :hp_conditions
+  has_many :hp_conditions, dependent: :destroy
 
   def for_lua
     {

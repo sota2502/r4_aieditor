@@ -3,7 +3,7 @@ class ActionRule < ApplicationRecord
   include NextActTimingable
   belongs_to :action_chain
   belongs_to :search
-  has_many :action_rule_cancels
+  has_many :action_rule_cancels, dependent: :destroy
   has_many :cancel_conditions, through: :action_rule_cancels
 
   validates :motion_id, presence: true, inclusion: { in: Motion::DEFINITION.keys }

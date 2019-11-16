@@ -66,7 +66,7 @@ class ActionChainsController < ApplicationController
   def destroy
     @action_chain.destroy
     respond_to do |format|
-      format.html { redirect_to project, notice: 'Action chain was successfully destroyed.' }
+      format.html { redirect_to action: :index, notice: 'Action chain was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
