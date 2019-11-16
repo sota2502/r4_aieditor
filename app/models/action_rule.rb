@@ -16,7 +16,7 @@ class ActionRule < ApplicationRecord
 
   def for_lua
     {
-      motion: motion.caption,
+      motion: motion.name,
       move: move_for_lua,
       next: self.next,
       search: search.name,

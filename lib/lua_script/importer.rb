@@ -79,7 +79,7 @@ module LuaScript
       end
 
       def import_exaction(table)
-
+        LuaScript::Importers::Exaction.import(@project, table)
       end
   end
 end

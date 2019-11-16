@@ -49,7 +49,7 @@ actionchain {
     target = 0,
     hold = 20,
     search = "サーチ1",
-    motion = "通常　　"
+    motion = "normal"
   },
   {
     way = 0,
@@ -59,7 +59,7 @@ actionchain {
     target = 0,
     hold = 10,
     search = "サーチ1",
-    motion = "Jump上昇"
+    motion = "jump_rise"
   },
   {
     cancel = { },
@@ -67,7 +67,7 @@ actionchain {
     next = 1,
     target = -2,
     way = 2,
-    motion = "通常　　"
+    motion = "normal"
   },
   name = "行動リスト1",
   cancel = {
@@ -88,9 +88,7 @@ exaction {
         search = "サーチ1",
         target = 0,
         action = "行動リスト1",
-        rate = {
-          "変数1"
-        },
+        rate = { "変数1" },
         motion = "normal"
       },
       {
@@ -98,9 +96,7 @@ exaction {
         search = "サーチ1",
         target = 0,
         action = "行動リスト1",
-        rate = {
-          "変数1"
-        },
+        rate = { "変数1" },
         motion = "normal"
       },
       {
@@ -108,9 +104,7 @@ exaction {
         search = "サーチ1",
         target = 0,
         action = "行動リスト1",
-        rate = {
-          "変数1"
-        },
+        rate = { "変数1" },
         motion = "normal"
       },
       {
@@ -118,9 +112,7 @@ exaction {
         search = "サーチ1",
         target = 3,
         action = "行動リスト1",
-        rate = {
-          "変数2"
-        },
+        rate = { "変数2" },
         motion = "guard"
       },
       {
@@ -133,9 +125,6 @@ exaction {
     {
     }
   },
-  condition = {
-    70,
-    50
-  },
+  condition = { 70, 50 },
   name = "ルーチン1"
 }
