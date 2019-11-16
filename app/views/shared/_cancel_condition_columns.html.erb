@@ -1,0 +1,27 @@
+<td><%= f.collection_select(:cancel_type_id, selector_source[:cancel_types], :id, :caption, {prompt: false}, {class: 'form-control js-cancel-type'}) %></td>
+<td><%= f.collection_select(:rate_id, selector_source[:rates], :id, :name, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
+<td><%= f.number_field :rate_coefficient, class: 'form-control' %></td>
+<td>
+  <%= f.number_field :parameter1, class: 'form-control js-parameter1', data: {type: 'number'}, style: "display: none" %>
+  <%= f.collection_select(:parameter1, selector_source[:motions], :id, :caption, {}, {class: 'form-control js-parameter1', data: {type: 'motions'}, style: "display: none"}) %>
+  <%= f.collection_select(:parameter1, selector_source[:target_types], :id, :caption, {}, {class: 'form-control js-parameter1', data: {type: 'target_types'}, style: "display: none"}) %>
+  <%= f.collection_select(:parameter1, selector_source[:searches], :id, :name, {}, {class: 'form-control js-parameter1', data: {type: 'searches'}, style: "display: none"}) %>
+</td>
+<td>
+  <%= f.number_field :parameter2, class: 'form-control js-parameter2', data: {type: 'number'}, style: "display: none" %>
+  <%= f.collection_select(:parameter2, selector_source[:motions], :id, :caption, {}, {class: 'form-control js-parameter2', data: {type: 'motions'}, style: "display: none"}) %>
+  <%= f.collection_select(:parameter2, selector_source[:target_types], :id, :caption, {}, {class: 'form-control js-parameter2', data: {type: 'target_types'}, style: "display: none"}) %>
+  <%= f.collection_select(:parameter2, selector_source[:searches], :id, :name, {}, {class: 'form-control js-parameter2', data: {type: 'searches'}, style: "display: none"}) %>
+</td>
+<td>
+    <% if cancel_condition.persisted? %>
+      <%
+        delete_path = if parent == 'action_chain'
+                        project_action_chain_action_chain_cancel_condition_path(project, action_chain, cancel_condition)
+                      else
+                        project_action_chain_action_rule_action_rule_cancel_condition_path(project, action_chain, @action_rule, cancel_condition)
+                      end
+      %>
+      <%= link_to '削除', delete_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+</td>

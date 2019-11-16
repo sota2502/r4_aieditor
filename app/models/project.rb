@@ -1,7 +1,8 @@
 class Project < ApplicationRecord
-  has_one :action_state
-  has_many :action_chains
-  has_one :exaction
+  has_one :action_state, dependent: :destroy
+  has_many :action_chains, dependent: :destroy
+  has_one :exaction, dependent: :destroy
+  has_many :cancel_conditions, dependent: :destroy
 
   def to_lua
     [

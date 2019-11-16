@@ -1,6 +1,6 @@
 class HpCondition < ApplicationRecord
   belongs_to :exaction
-  has_many :action_routines
+  has_many :action_routines, dependent: :destroy
 
   # items in exaction.action
   def for_lua

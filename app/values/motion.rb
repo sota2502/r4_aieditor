@@ -121,5 +121,11 @@ class Motion
     def all
       DEFINITION.keys.sort.map { |id| new(id) }
     end
+
+    def find_by_name(name)
+      name = name.to_s if (name.is_a?(Symbol))
+      id, attr = DEFINITION.find { |_, v| v[:name] == name }
+      id.present? ? new(id) : nil
+    end
   end
 end

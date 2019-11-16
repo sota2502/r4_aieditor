@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :action_routines
   resources :projects do
     resources :action_states do
       resources :targets
@@ -21,6 +20,8 @@ Rails.application.routes.draw do
         resources :action_routines, only: [:create, :update, :destroy]
       end
     end
+
+    resources :importer, only: [:index, :create]
   end
 
   root to: 'projects#index'
