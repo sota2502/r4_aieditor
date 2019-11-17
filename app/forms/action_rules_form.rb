@@ -18,12 +18,12 @@ class ActionRulesForm
     def action_rule_instances(action_chain_id)
       @action_rules_params[:action_rule][:action_rules].to_h.map do |_, param|
         ActionRule.new(param.merge(action_chain_id: action_chain_id))
-      end.select(&:valid?)
+      end
     end
 
     def new_action_rule_instances(action_chain_id)
       @action_rules_params[:action_rule][:new_action_rules].to_a.map do |param|
         ActionRule.new(param.merge(action_chain_id: action_chain_id))
-      end.select(&:valid?)
+      end
     end
 end

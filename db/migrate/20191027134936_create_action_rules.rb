@@ -5,8 +5,8 @@ class CreateActionRules < ActiveRecord::Migration[6.0]
       t.integer :motion_id
       t.integer :move_x
       t.integer :move_y
-      t.integer :next, null: false
-      t.references :search, null: false, foreign_key: true
+      t.integer :next, null: true
+      t.references :search, null: true, foreign_key: true
       t.integer :target_value, null: true
       t.unsigned_integer :hold
 
