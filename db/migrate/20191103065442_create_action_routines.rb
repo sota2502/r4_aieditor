@@ -2,7 +2,7 @@ class CreateActionRoutines < ActiveRecord::Migration[6.0]
   def change
     create_table :action_routines do |t|
       t.references :hp_condition, null: false, foreign_key: true
-      t.references :search, null: false, foreign_key: true
+      t.references :search, null: true, foreign_key: true
       t.integer :target_value
       t.integer :motion_id
       t.references :rate, null: true, foreign_key: true
