@@ -1,6 +1,8 @@
 <h1><%= project.name %> / 行動リスト / <%= @action_chain.name %></h1>
 
+<% if notice.present? %>
 <p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
 
 <h2>行動リスト選択</h2>
 
