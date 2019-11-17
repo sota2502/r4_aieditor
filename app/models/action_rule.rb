@@ -2,13 +2,9 @@ class ActionRule < ApplicationRecord
   include Motionable
   include NextActTimingable
   belongs_to :action_chain
-  belongs_to :search
+  belongs_to :search, optional: true
   has_many :action_rule_cancels, dependent: :destroy
   has_many :cancel_conditions, through: :action_rule_cancels
-
-  validates :motion_id, presence: true, inclusion: { in: Motion::DEFINITION.keys }
-  validates :next, presence: true, inclusion: { in: NextActTiming::DEFINITION.keys }
-  validates :target_value, presence: true, inclusion: { in: TargetType::DEFINITION.keys }
 
   def target_type
     TargetType.new(target_value)

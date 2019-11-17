@@ -31,7 +31,7 @@ class ActionRulesController < ApplicationController
     ActionRulesForm.new(action_rule_params).save
 
     respond_to do |format|
-      format.html { redirect_to [project, action_chain], notice: 'Action rule was successfully created.' }
+      format.html { redirect_to [project, action_chain], notice: 'Action rule was successfully saved.' }
       format.json { render :show, status: :created, location: @action_rule }
     end
   end
