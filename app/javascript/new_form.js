@@ -10,6 +10,12 @@ $(function() {
     element.removeClass('js-new-form-item')
     element.addClass('js-added-form-item')
     element.find('input, select, textarea').prop('disabled', false)
+
+    element.find('.js-delete').on('click', (evt) => {
+      evt.preventDefault()
+      evt.stopPropagation()
+      element.remove();
+    });
     
     new_form.before(element)
     element.show(300)

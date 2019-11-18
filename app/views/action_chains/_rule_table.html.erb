@@ -54,7 +54,7 @@
           <td><%= f.number_field :move_y, class: 'form-control' %></td>
           <td><%= f.collection_select(:way_id, ways, :id, :caption, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
           <td></td>
-          <td></td>
+          <td><button class="label label-danger js-delete">×</button></td>
         </tr>
       <% end %>
     </tbody>
