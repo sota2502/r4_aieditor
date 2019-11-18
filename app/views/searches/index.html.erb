@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Searches</h1>
+<h1>
+<%= link_to project.name, project %>
+/
+<%= link_to "Action State", [project, action_state] %>
+/
+Searches
+</h1>
 
 <%= form_with(model: [project, action_state, @search], local: true) do |form| %>
   <%= form.hidden_field :action_state_id, value: action_state.id %>

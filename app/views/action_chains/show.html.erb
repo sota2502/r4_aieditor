@@ -1,4 +1,10 @@
-<h1><%= project.name %> / 行動リスト / <%= @action_chain.name %></h1>
+<h1>
+<%= link_to project.name, project %>
+/
+<%= link_to 'Action Chain', project_action_chains_path(project) %>
+/
+<%= @action_chain.name %>
+</h1>
 
 <% if notice.present? %>
 <p id="notice" class="alert alert-info"><%= notice %></p>

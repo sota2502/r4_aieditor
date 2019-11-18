@@ -1,4 +1,12 @@
-<h1><%= project.name %> / <%= action_chain.name %> / キャンセル条件</h1>
+<h1>
+<%= link_to project.name, project %>
+/
+<%= link_to 'Action Chain', project_action_chains_path(project) %>
+/
+<%= link_to action_chain.name, [project, action_chain] %>
+/
+キャンセル条件
+</h1>
 
 <%= render 'shared/cancel_condition_table',
     cancel_conditions: @cancel_conditions,

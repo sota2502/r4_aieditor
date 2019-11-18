@@ -1,4 +1,10 @@
-<h1><%= project.name %> / <%= exaction.name %> / <%= @hp_condition.value %>%以下</h1>
+<h1>
+<%= link_to project.name, project %>
+/
+<%= link_to exaction.name, [project, exaction] %>
+/
+<%= @hp_condition.value %>%以下
+</h1>
 
 <p id="notice"><%= notice %></p>
 
