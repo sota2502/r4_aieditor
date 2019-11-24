@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_150816) do
     t.integer "target_value"
     t.integer "motion_id"
     t.bigint "rate_id"
-    t.integer "rate_coefficient", unsigned: true
+    t.float "rate_coefficient", unsigned: true
     t.integer "cancel_type_id"
     t.bigint "action_chain_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_150816) do
   create_table "action_rules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "action_chain_id", null: false
     t.integer "motion_id"
-    t.integer "move_x"
-    t.integer "move_y"
+    t.float "move_x"
+    t.float "move_y"
     t.integer "next", null: false
     t.bigint "search_id", null: false
     t.integer "target_value"
@@ -82,28 +82,11 @@ ActiveRecord::Schema.define(version: 2019_11_09_150816) do
     t.index ["project_id"], name: "index_action_states_on_project_id"
   end
 
-  create_table "actions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "hp_condition_id", null: false
-    t.bigint "search_id", null: false
-    t.integer "target_value"
-    t.integer "motion_id"
-    t.bigint "rate_id"
-    t.integer "rate_coefficient", unsigned: true
-    t.integer "cancel_type_id", null: false
-    t.bigint "action_chain_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["action_chain_id"], name: "index_actions_on_action_chain_id"
-    t.index ["hp_condition_id"], name: "index_actions_on_hp_condition_id"
-    t.index ["rate_id"], name: "index_actions_on_rate_id"
-    t.index ["search_id"], name: "index_actions_on_search_id"
-  end
-
   create_table "cancel_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.integer "cancel_type_id", null: false
     t.bigint "rate_id"
-    t.integer "rate_coefficient", unsigned: true
+    t.float "rate_coefficient", unsigned: true
     t.integer "parameter1"
     t.integer "parameter2"
     t.datetime "created_at", precision: 6, null: false
@@ -137,7 +120,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_150816) do
   create_table "rates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "action_state_id", null: false
     t.string "name"
-    t.integer "value", unsigned: true
+    t.float "value", unsigned: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["action_state_id"], name: "index_rates_on_action_state_id"

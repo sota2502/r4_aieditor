@@ -2,7 +2,7 @@ class Rate < ApplicationRecord
   belongs_to :action_state
 
   validates :name, presence: true
-  validates :value, presence: true, numericality: { only_integer: true }
+  validates :value, presence: true, numericality: true
 
   def for_lua
     [ name, value ]
