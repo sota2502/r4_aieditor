@@ -30,7 +30,7 @@
             <td><%= f.collection_select(:search_id, searches, :id, :name, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
             <td><%= f.collection_select(:target_value, target_types, :id, :caption, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
             <td><%= f.collection_select(:motion_id, motions, :id, :caption, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
-            <td><%= f.collection_select(:rate_id, rates, :id, :name, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
+            <td><%= f.collection_select(:rate_id, rates, :id, :name_with_value, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
             <td><%= f.number_field :rate_coefficient, step: 0.01, class: 'form-control' %></td>
             <td><%= f.collection_select(:cancel_type_id, cancel_types, :id, :caption, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
             <td><%= f.collection_select(:action_chain_id, action_chains, :id, :name, {}, {class: 'form-control'}) %></td>
