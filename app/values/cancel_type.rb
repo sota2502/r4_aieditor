@@ -20,7 +20,9 @@ class CancelType
     102 => { name: :own_stamina, caption: '自分スタミナ', parameter1: :number, parameter2: :number },
     103 => { name: :own_robustness, caption: '自分頑強度', parameter1: :number, parameter2: :number },
     104 => { name: :own_balance, caption: '自分体幹', parameter1: :number, parameter2: :number },
-    105 => { name: :own_stock, caption: '自分ストック', parameter1: :number, parameter2: :number }
+    105 => { name: :own_stock, caption: '自分ストック', parameter1: :number, parameter2: :number },
+    201 => { name: :find_event, caption: 'イベント検知', parameter1: nil, parameter2: nil },
+    202 => { name: :handle_event, caption: 'イベント実行', parameter1: nil, parameter2: nil },
   }
 
   attr_reader :id, :caption, :parameter1, :parameter2
