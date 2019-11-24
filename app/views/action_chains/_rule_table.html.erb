@@ -33,8 +33,8 @@
             <td><%= f.collection_select(:search_id, project.action_state.searches, :id, :name, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
             <td><%= f.collection_select(:target_value, target_types, :id, :caption, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
             <td><%= f.number_field :hold, class: 'form-control' %></td>
-            <td><%= f.number_field :move_x, class: 'form-control' %></td>
-            <td><%= f.number_field :move_y, class: 'form-control' %></td>
+            <td><%= f.number_field :move_x, step: 0.01, class: 'form-control' %></td>
+            <td><%= f.number_field :move_y, step: 0.01, class: 'form-control' %></td>
             <td><%= f.collection_select(:way_id, ways, :id, :caption, {include_blank: '未選択'}, {class: 'form-control'}) %></td>
             <td><%= link_to '...', project_action_chain_action_rule_action_rule_cancel_conditions_path(project, @action_chain, action_rule) %></td>
             <td><%= link_to '×', [project, @action_chain, action_rule], method: :delete, data: { confirm: 'Are you sure?' }, class: 'label label-danger' %> </td>
