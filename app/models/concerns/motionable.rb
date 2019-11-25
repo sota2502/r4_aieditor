@@ -2,7 +2,7 @@ module Motionable
   extend ActiveSupport::Concern
 
   def motion
-    Motion.new(motion_id)
+    motion_id.present? ? Motion.new(motion_id) : nil
   end
 
   def motion=(object)

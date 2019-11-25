@@ -12,10 +12,10 @@ class ActionRule < ApplicationRecord
 
   def for_lua
     {
-      motion: motion.name,
+      motion: motion&.name,
       move: move_for_lua,
       next: self.next,
-      search: search.name,
+      search: search&.name,
       target: target_value,
       hold: hold,
       way: way_id,

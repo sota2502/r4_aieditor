@@ -12,9 +12,9 @@ class ActionRoutine < ApplicationRecord
 
   def for_lua
     {
-      search: search.name,
+      search: search&.name,
       target: target_value,
-      motion: motion.name,
+      motion: motion&.name,
       rate: rate_for_lua,
       cancel: cancel_type_id,
       action: action_chain.name
