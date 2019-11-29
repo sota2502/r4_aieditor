@@ -10,8 +10,22 @@
   </head>
 
   <body>
-    <div class="container">
-      <%= yield %>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">AI Editor</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 col-sm-3 sidebar">
+          <%= render 'shared/sidebar' %>
+        </div>
+        <div class="col-md-10 col-md-2-offset col-sm-9 col-sm-3-offset main">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>
