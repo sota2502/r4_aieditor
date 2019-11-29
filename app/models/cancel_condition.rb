@@ -1,5 +1,6 @@
 class CancelCondition < ApplicationRecord
   include CancelTypable
+  include RateSetable
   belongs_to :project
   belongs_to :rate, optional: true
 
@@ -13,19 +14,6 @@ class CancelCondition < ApplicationRecord
   end
 
   private
-
-    def rate_for_lua
-      if rate.nil?
-        if rate_coefficient.nil?
-          nil
-        else
-          [rate_coefficient]
-        end
-      else
-        [rate.name, rate_coefficient].select(&:present?)
-      end
-    end
-
     def parameter1_for_lua
       parameter_lua_value(parameter1, cancel_type.parameter1)
     end

@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_150816) do
 
   create_table "action_routines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "hp_condition_id", null: false
-    t.bigint "search_id", null: false
+    t.bigint "search_id"
     t.integer "target_value"
     t.integer "motion_id"
     t.bigint "rate_id"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_150816) do
     t.integer "motion_id"
     t.float "move_x"
     t.float "move_y"
-    t.integer "next", null: false
-    t.bigint "search_id", null: false
+    t.integer "next"
+    t.bigint "search_id"
     t.integer "target_value"
     t.integer "hold", unsigned: true
     t.integer "way_id"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_150816) do
 
   create_table "hp_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "exaction_id", null: false
-    t.integer "value", null: false, unsigned: true
+    t.float "value", null: false, unsigned: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["exaction_id"], name: "index_hp_conditions_on_exaction_id"
@@ -158,10 +158,6 @@ ActiveRecord::Schema.define(version: 2019_11_09_150816) do
   add_foreign_key "action_rules", "action_chains"
   add_foreign_key "action_rules", "searches"
   add_foreign_key "action_states", "projects"
-  add_foreign_key "actions", "action_chains"
-  add_foreign_key "actions", "hp_conditions"
-  add_foreign_key "actions", "rates"
-  add_foreign_key "actions", "searches"
   add_foreign_key "cancel_conditions", "projects"
   add_foreign_key "cancel_conditions", "rates"
   add_foreign_key "exactions", "projects"
