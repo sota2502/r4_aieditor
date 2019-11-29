@@ -1,0 +1,34 @@
+<%
+current_project = if defined? project
+                    project
+                  elsif @project.present?
+                    @project
+                  else
+                    nil
+                  end
+%>
+
+<ul class="nav nav-sidebar">
+  <% @projects_for_sidebar.each do |prj| %>
+    <li><%= link_to prj.name, prj %></li>
+    <% if prj.id == current_project&.id %>
+      <ul style="list-style-type:none;">
+        <li>
+          <% if prj.action_state.present? %>
+            <%= link_to 'ActionState', project_action_state_path(prj, prj.action_state) %>
+          <% else %>
+            <%= link_to 'ActionState', new_project_action_state_path(prj) %>
+          <% end %>
+        </li>
+        <li><%= link_to 'ActionChain', project_action_chains_path(prj) %></li>
+        <li>
+          <% if prj.exaction.present? %>
+            <%= link_to 'Exaction', project_exaction_path(prj, prj.exaction) %>
+          <% else %>
+            <%= link_to 'Exaction', new_project_exaction_path(prj) %>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+</ul>
