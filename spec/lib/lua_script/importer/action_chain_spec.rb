@@ -1,5 +1,4 @@
 require "rails_helper"
-# require_relative '../../../lib/lua_script/dumper'
 require 'lua_script/importers/action_chain'
 
 describe LuaScript::Importers::ActionChain do
