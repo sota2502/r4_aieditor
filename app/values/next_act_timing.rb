@@ -1,5 +1,6 @@
 class NextActTiming
   DEFINITION = {
+    0 => { name: :motion_end, caption: 'モーション終了時'},
     1 => { name: :main_scene_end, caption: 'メインシーン終了時' },
     2 => { name: :end_scene_end, caption: 'エンドシーン終了時' },
     3 => { name: :holding_end, caption: 'ホールド時間経過時' },
